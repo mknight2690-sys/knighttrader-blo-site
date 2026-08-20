@@ -1,10 +1,42 @@
 (() => {
-  const windowsUrl = 'https://github.com/mknight2690-sys/KnightTrader-BloFin/releases/latest';
-  const macUrl = 'https://github.com/mknight2690-sys/KnightTrader-BloFin/releases/latest';
+  const releaseBase = 'https://github.com/mknight2690-sys/KnightTrader-BloFin';
+  const releaseApiUrl = `${releaseBase}/releases/latest`;
+  let windowsUrl = `${releaseBase}/releases/latest`;
+  let macUrl = `${releaseBase}/releases/latest`;
   const btnWindows = document.getElementById('btn-download-windows');
   const btnMac = document.getElementById('btn-download-mac');
   const downloadNote = document.getElementById('download-note');
   const buttons = document.querySelectorAll('.platform-btn');
+
+  async function fetchLatestRelease() {
+    try {
+      const res = await fetch(releaseApiUrl, {
+        headers: { Accept: 'application/vnd.github+json' },
+      });
+      if (!res.ok) return null;
+      return await res.json();
+    } catch {
+      return null;
+    }
+  }
+
+  function findAsset(assets, pattern) {
+    return assets.find((asset) => pattern.test(asset.name));
+  }
+
+  async function updateDownloadLinks() {
+    const release = await fetchLatestRelease();
+    if (release?.assets?.length) {
+      const windowsAsset = findAsset(release.assets, /\.exe$/i);
+      const macAsset = findAsset(release.assets, /\.dmg$/i);
+      if (windowsAsset?.browser_download_url) {
+        windowsUrl = windowsAsset.browser_download_url;
+      }
+      if (macAsset?.browser_download_url) {
+        macUrl = macAsset.browser_download_url;
+      }
+    }
+  }
 
   function selectPlatform(key) {
     const isMac = key === 'mac';
@@ -15,17 +47,17 @@
     });
     if (btnWindows) {
       btnWindows.classList.toggle('hidden', isMac);
-      btnWindows.setAttribute('href', windowsUrl);
+      btnWindows.setAttribute('href', isMac ? '' : windowsUrl);
       btnWindows.textContent = 'Download for Windows';
     }
     if (btnMac) {
       btnMac.classList.toggle('hidden', !isMac);
-      btnMac.setAttribute('href', macUrl);
+      btnMac.setAttribute('href', isMac ? macUrl : '');
       btnMac.textContent = 'Download for Mac';
     }
     if (downloadNote) {
       downloadNote.textContent = isMac
-        ? 'Mac: download the KT BloFin .dmg from the release page.'
+        ? 'Mac: download the KT BloFin .dmg directly.'
         : 'Windows: download the KT BloFin .exe installer directly.';
     }
   }
@@ -34,5 +66,5 @@
     btn.addEventListener('click', () => selectPlatform(btn.dataset.platform));
   });
 
-  selectPlatform('windows');
+  updateDownloadLinks().then(() => selectPlatform('windows'));
 })();
