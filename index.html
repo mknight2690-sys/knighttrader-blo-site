@@ -19,6 +19,7 @@
       </div>
       <nav class="site-nav">
         <a href="#what">What it is</a>
+        <a href="#download">Download</a>
         <a href="#getting">Get started</a>
         <a href="#faq">FAQ</a>
       </nav>
@@ -87,10 +88,10 @@
       </div>
     </section>
 
-    <section class="hero">
+    <section class="section" id="download">
       <div class="container">
-        <h1>KnightTrader BloFin</h1>
-        <p class="hero-sub">A local-first autonomous trading assistant for BloFin.</p>
+        <h2>Download</h2>
+        <p class="section-lead">Read what this does first, then choose your platform. This order is intentional: know what you are installing before you install it.</p>
         <div class="platform-selector">
           <button class="platform-btn active" data-platform="windows">
             <span class="platform-icon">🪟</span>
@@ -104,6 +105,15 @@
         <div class="download-area" id="download-area">
           <a class="btn-primary" id="btn-download" href="https://github.com/mknig/hermes-trader/releases/latest" target="_blank" rel="noopener">Download for Windows</a>
           <p class="download-note" id="download-note">.exe installer — Windows 10/11</p>
+        </div>
+        <div class="mac-note" id="mac-note">
+          <h3>macOS build</h3>
+          <p>Use this path if you want a native macOS app experience. These steps package the same Hermes-powered assistant for Mac.</p>
+          <pre><code>git clone https://github.com/mknig/hermes-trader.git
+cd hermes-trader/KnightTrader
+npm install
+npm run build</code></pre>
+          <p class="small">After building, open the app bundle from the Electron output folder. If macOS blocks it, open <strong>System Settings → Privacy & Security</strong> and allow the app. For distribution, sign/notarize the app bundle and package it as a <strong>.dmg</strong> before sharing.</p>
         </div>
         <p class="hero-disclaimer">This is a trading assistant, not financial advice. Review your setup, API permissions, and risk before use.</p>
       </div>
@@ -142,16 +152,6 @@
             </div>
           </li>
         </ol>
-
-        <div class="mac-note" id="mac-note">
-          <h3>macOS setup notes</h3>
-          <p>On macOS, you can build the app locally with Electron. The repo includes the same Windows experience adapted for Mac packaging.</p>
-          <pre><code>git clone https://github.com/mknig/hermes-trader.git
-cd hermes-trader/KnightTrader
-npm install
-npm run build</code></pre>
-          <p class="small">After building, the app bundle is available under the Electron output folder. You may need to allow the app in <strong>System Settings → Privacy & Security</strong> when first opening.</p>
-        </div>
       </div>
     </section>
 
