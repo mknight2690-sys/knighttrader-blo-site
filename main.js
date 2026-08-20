@@ -1,6 +1,6 @@
 (() => {
-  const windowsUrl = 'https://github.com/mknight2690-sys/KnightTrader-BloFin/releases/download/v1.0.0/KnightTrader-BloFin-Setup.exe';
-  const macUrl = 'https://github.com/mknight2690-sys/KnightTrader-BloFin/releases/download/v1.0.0/KnightTrader-1.0.0-arm64.dmg';
+  const windowsUrl = 'https://github.com/mknight2690-sys/KnightTrader-BloFin/releases/download/v1.0.0/KnightTrader-Setup-1.0.0.exe';
+  const macUrl = 'https://github.com/mknight2690-sys/KnightTrader-BloFin/releases/latest';
   const btnWindows = document.getElementById('btn-download-windows');
   const btnMac = document.getElementById('btn-download-mac');
   const downloadNote = document.getElementById('download-note');
@@ -25,7 +25,7 @@
     }
     if (downloadNote) {
       downloadNote.textContent = isMac
-        ? 'Mac: download the KT BloFin .dmg directly.'
+        ? 'Mac: download the KT BloFin .dmg from the release page.'
         : 'Windows: download the KT BloFin .exe installer directly.';
     }
   }
