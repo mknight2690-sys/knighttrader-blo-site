@@ -38,6 +38,33 @@
     }
   }
 
+  async function forceDownload(url, filename) {
+    try {
+      const res = await fetch(url, { mode: 'cors' });
+      if (!res.ok) throw new Error('Download failed');
+      const blob = await res.blob();
+      const blobUrl = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = blobUrl;
+      a.download = filename || '';
+      a.target = '_blank';
+      document.body.appendChild(a);
+      a.click();
+      setTimeout(() => {
+        document.body.removeChild(a);
+        URL.revokeObjectURL(blobUrl);
+      }, 0);
+    } catch {
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename || '';
+      a.target = '_blank';
+      document.body.appendChild(a);
+      a.click();
+      setTimeout(() => document.body.removeChild(a), 0);
+    }
+  }
+
   function selectPlatform(key) {
     const isMac = key === 'mac';
     buttons.forEach((btn) => {
@@ -48,11 +75,13 @@
     if (btnWindows) {
       btnWindows.classList.toggle('hidden', isMac);
       btnWindows.setAttribute('href', isMac ? '' : windowsUrl);
+      btnWindows.setAttribute('download', isMac ? '' : 'KnightTrader-BloFin-Setup.exe');
       btnWindows.textContent = 'Download for Windows';
     }
     if (btnMac) {
       btnMac.classList.toggle('hidden', !isMac);
       btnMac.setAttribute('href', isMac ? macUrl : '');
+      btnMac.setAttribute('download', isMac ? 'KnightTrader-BloFin.dmg' : '');
       btnMac.textContent = 'Download for Mac';
     }
     if (downloadNote) {
@@ -65,6 +94,24 @@
   buttons.forEach((btn) => {
     btn.addEventListener('click', () => selectPlatform(btn.dataset.platform));
   });
+
+  if (btnWindows) {
+    btnWindows.addEventListener('click', (e) => {
+      e.preventDefault();
+      const href = btnWindows.getAttribute('href');
+      if (!href) return;
+      forceDownload(href, 'KnightTrader-BloFin-Setup.exe');
+    });
+  }
+
+  if (btnMac) {
+    btnMac.addEventListener('click', (e) => {
+      e.preventDefault();
+      const href = btnMac.getAttribute('href');
+      if (!href) return;
+      forceDownload(href, 'KnightTrader-BloFin.dmg');
+    });
+  }
 
   updateDownloadLinks().then(() => selectPlatform('windows'));
 })();
