@@ -12,8 +12,8 @@
       btn.setAttribute('aria-pressed', String(active));
     });
     if (btnDownload) {
-      btnDownload.textContent = 'Open download page';
-      btnDownload.setAttribute('href', canonicalUrl);
+      btnDownload.textContent = isMac ? 'Download for Mac' : 'Download for Windows';
+      btnDownload.setAttribute('href', canonicalUrl + '#download');
     }
     if (downloadNote) {
       downloadNote.textContent = isMac
