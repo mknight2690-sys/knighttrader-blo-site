@@ -1,21 +1,25 @@
 :root {
-  --bg: #090c10;
-  --bg2: #0d1117;
-  --panel: #11161e;
-  --panel2: #151c26;
+  --bg: #070b0f;
+  --bg2: #0b1016;
+  --panel: #0f161f;
+  --panel2: #131c28;
   --border: rgba(255,255,255,0.07);
   --border2: rgba(255,255,255,0.12);
   --text: #e8eef7;
   --text2: #a8b8cc;
   --text3: #6a7d93;
-  --accent: #f5c542;
-  --accent-dim: rgba(245,197,66,0.15);
-  --accent-glow: rgba(245,197,66,0.35);
+  --accent: #22c55e;
+  --accent-dim: rgba(34,197,94,0.12);
+  --accent-glow: rgba(34,197,94,0.35);
+  --accent2: #f5c542;
+  --accent2-dim: rgba(245,197,66,0.12);
+  --accent2-glow: rgba(245,197,66,0.35);
   --good: #3dd68c;
   --error: #ff7b72;
   --radius: 12px;
   --radius-sm: 8px;
   --shadow: 0 8px 32px rgba(0,0,0,0.5);
+  --shadow-sm: 0 2px 8px rgba(0,0,0,0.4);
   --transition: 0.18s ease;
 }
 
@@ -36,7 +40,7 @@ a { color: var(--accent); }
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(9,12,16,0.85);
+  background: rgba(7,11,15,0.85);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border);
 }
@@ -62,7 +66,7 @@ a { color: var(--accent); }
   width: 34px;
   height: 34px;
   border-radius: 10px;
-  background: var(--accent);
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
   color: #0a0c10;
   font-weight: 800;
   font-size: 14px;
@@ -87,7 +91,7 @@ a { color: var(--accent); }
 .site-nav a:hover { color: var(--accent); }
 
 .hero {
-  padding: 72px 0 56px;
+  padding: 64px 0 48px;
   text-align: center;
 }
 .hero h1 {
@@ -101,10 +105,45 @@ a { color: var(--accent); }
   color: var(--text2);
   font-size: 18px;
 }
+.section { padding: 52px 0; }
+.section h2 {
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.section p, .section li {
+  color: var(--text2);
+}
+.section p + p { margin-top: 10px; }
+
+.audience-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-top: 10px;
+}
+@media (max-width: 780px) { .audience-cards { grid-template-columns: 1fr; } }
+.audience-card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+}
+.audience-icon { font-size: 22px; margin-bottom: 8px; }
+.audience-card h3 { font-size: 16px; margin-bottom: 6px; color: var(--text); }
+.audience-card p { color: var(--text2); font-size: 14px; }
+
+.feature-list {
+  padding-left: 18px;
+  color: var(--text2);
+}
+.feature-list li + li { margin-top: 6px; }
+.feature-list strong { color: var(--text); }
+
 .platform-selector {
   display: inline-flex;
   gap: 8px;
-  margin-top: 26px;
+  margin-top: 24px;
   padding: 6px;
   border-radius: 999px;
   background: var(--panel2);
@@ -132,17 +171,39 @@ a { color: var(--accent); }
   color: var(--text);
   box-shadow: var(--shadow-sm);
 }
-.platform-icon { font-size: 16px; }
 
-.download-area {
-  margin-top: 22px;
+.download-block {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-top: 14px;
+}
+@media (max-width: 760px) { .download-block { grid-template-columns: 1fr; } }
+.download-col {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px;
+}
+.download-col strong { color: var(--text); }
+.mono {
+  font-family: 'JetBrains Mono', monospace;
+  color: var(--text);
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 2px 6px;
+  font-size: 13px;
+}
+.download-actions {
+  margin-top: 18px;
 }
 .btn-primary {
   appearance: none;
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: var(--accent);
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
   color: #0a0c10;
   font-family: inherit;
   font-weight: 700;
@@ -162,78 +223,35 @@ a { color: var(--accent); }
   color: var(--text3);
   font-size: 13px;
 }
-.hero-disclaimer {
-  margin-top: 18px;
+.download-after {
+  margin-top: 10px;
   color: var(--text3);
-  font-size: 12px;
-}
-
-.mac-note {
-  margin-top: 18px;
-  padding: 16px;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  background: var(--panel);
-  color: var(--text2);
-}
-.mac-note h3 { color: var(--text); margin-bottom: 8px; }
-.mac-note pre {
-  background: var(--bg2);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-xs);
-  padding: 12px;
-  overflow-x: auto;
-  color: var(--text2);
-  font-family: 'JetBrains Mono', monospace;
   font-size: 13px;
 }
-.mac-note .small { color: var(--text3); font-size: 12px; margin-top: 8px; }
+.disclaimer {
+  margin-top: 10px;
+  color: var(--text3);
+  font-size: 13px;
+}
 
-.section { padding: 56px 0; }
-.section h2 {
-  font-size: 28px;
-  font-weight: 700;
-  margin-bottom: 10px;
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
 }
-.section-lead {
-  color: var(--text2);
-  margin-bottom: 22px;
-  max-width: 760px;
-}
-.info-block {
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
   background: var(--panel);
   border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 18px;
-  margin-top: 16px;
-}
-.info-block h3 { color: var(--text); margin-bottom: 8px; }
-.info-block p { color: var(--text2); }
-.info-block p + p { margin-top: 8px; }
-
-.audience-cards {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 14px;
-  margin-top: 8px;
-}
-@media (max-width: 780px) { .audience-cards { grid-template-columns: 1fr; } }
-.audience-card {
-  background: var(--panel);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 16px;
-}
-.audience-icon { font-size: 22px; margin-bottom: 8px; }
-.audience-card h3 { font-size: 16px; margin-bottom: 6px; }
-.audience-card p { color: var(--text2); font-size: 14px; }
-
-.feature-list {
-  padding-left: 18px;
   color: var(--text2);
+  font-weight: 600;
+  font-size: 13px;
 }
-.feature-list li + li { margin-top: 6px; }
-.feature-list strong { color: var(--text); }
 
 .steps {
   display: grid;
@@ -281,5 +299,4 @@ details[open] { background: var(--panel2); }
   color: var(--text3);
   font-size: 13px;
 }
-
 .hidden { display: none !important; }
