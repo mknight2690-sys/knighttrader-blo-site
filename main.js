@@ -1,6 +1,8 @@
 (() => {
-  const canonicalUrl = 'https://mknight2690-sys.github.io/knighttrader-blo-site/';
-  const btnDownload = document.getElementById('btn-download');
+  const windowsUrl = 'https://github.com/mknight2690-sys/KnightTrader-BloFin/releases/download/v1.0.0/KnightTrader-BloFin-Setup.exe';
+  const macUrl = 'https://github.com/mknight2690-sys/KnightTrader-BloFin/releases/latest';
+  const btnWindows = document.getElementById('btn-download-windows');
+  const btnMac = document.getElementById('btn-download-mac');
   const downloadNote = document.getElementById('download-note');
   const buttons = document.querySelectorAll('.platform-btn');
 
@@ -11,14 +13,20 @@
       btn.classList.toggle('active', active);
       btn.setAttribute('aria-pressed', String(active));
     });
-    if (btnDownload) {
-      btnDownload.textContent = isMac ? 'Download for Mac' : 'Download for Windows';
-      btnDownload.setAttribute('href', canonicalUrl + '#download');
+    if (btnWindows) {
+      btnWindows.classList.toggle('hidden', isMac);
+      btnWindows.setAttribute('href', windowsUrl);
+      btnWindows.textContent = 'Download for Windows';
+    }
+    if (btnMac) {
+      btnMac.classList.toggle('hidden', !isMac);
+      btnMac.setAttribute('href', macUrl);
+      btnMac.textContent = 'Download for Mac';
     }
     if (downloadNote) {
       downloadNote.textContent = isMac
-        ? 'Mac: use this page for the official Mac path or local Electron build guidance.'
-        : 'Windows: use this page for the latest Windows download when available.';
+        ? 'Mac: download the KT BloFin .dmg from the release page.'
+        : 'Windows: download the KT BloFin .exe installer directly.';
     }
   }
 
