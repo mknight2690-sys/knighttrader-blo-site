@@ -1,5 +1,5 @@
 (() => {
-  const windowsUrl = 'https://github.com/mknight2690-sys/KnightTrader-BloFin/releases/download/v1.0.0/KnightTrader-Setup-1.0.0.exe';
+  const windowsUrl = 'https://github.com/mknight2690-sys/KnightTrader-BloFin/releases/download/v1.0.3/KnightTrader-Setup-1.0.3.exe';
   const macUrl = 'https://github.com/mknight2690-sys/KnightTrader-BloFin/releases/latest';
   const btnWindows = document.getElementById('btn-download-windows');
   const btnMac = document.getElementById('btn-download-mac');
