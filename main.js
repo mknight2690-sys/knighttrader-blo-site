@@ -109,24 +109,30 @@
     btn.addEventListener('click', () => selectPlatform(btn.dataset.platform));
   });
 
-  function enableDownloads() {
+  function bindDownloads() {
     if (btnWindows) {
-      btnWindows.addEventListener('click', (e) => {
+      btnWindows.onclick = (e) => {
         e.preventDefault();
+        if (!isLoggedIn()) {
+          setSiteLoginError('Sign in first to download.');
+          return;
+        }
         triggerDownload(windowsUrl);
-      });
+      };
     }
     if (btnMac) {
-      btnMac.addEventListener('click', (e) => {
+      btnMac.onclick = (e) => {
         e.preventDefault();
+        if (!isLoggedIn()) {
+          setSiteLoginError('Sign in first to download.');
+          return;
+        }
         triggerDownload(macUrl);
-      });
+      };
     }
   }
 
-  if (isLoggedIn()) {
-    enableDownloads();
-  }
+  bindDownloads();
 
   const formSiteLogin = document.getElementById('form-site-login');
   const formSiteForgot = document.getElementById('form-site-forgot');
@@ -150,7 +156,7 @@
       }
       saveSession({ email: normalizeEmail(email), password });
       setSiteLoginError('');
-      enableDownloads();
+      setSiteLoginError('Signed in. You can download now.');
     });
   }
 
