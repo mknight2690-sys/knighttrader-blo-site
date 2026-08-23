@@ -234,6 +234,58 @@ a { color: var(--accent); }
   font-size: 13px;
 }
 
+.offer-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  margin-top: 14px;
+}
+@media (max-width: 760px) { .offer-grid { grid-template-columns: 1fr; } }
+.offer-card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+}
+.offer-title {
+  color: var(--text);
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.offer-cta {
+  margin-top: 18px;
+  text-align: center;
+}
+.offer-note {
+  margin-top: 10px;
+  color: var(--text3);
+  font-size: 13px;
+}
+
+.section-accent {
+  background: var(--panel2);
+  border-top: 1px solid var(--border2);
+  border-bottom: 1px solid var(--border2);
+}
+.subscribe-lead, .login-intro {
+  color: var(--text2);
+  margin-bottom: 12px;
+}
+.subscribe-actions, .login-actions {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-start;
+}
+.subscribe-note {
+  color: var(--text3);
+  font-size: 13px;
+  max-width: 560px;
+}
+.login-actions {
+  margin-top: 12px;
+}
+
 .badges {
   display: flex;
   flex-wrap: wrap;

@@ -21,7 +21,10 @@
         <a href="#problem">Problem</a>
         <a href="#solution">Solution</a>
         <a href="#value">Value</a>
-        <a href="#download">Get Started</a>
+        <a href="#download">Download</a>
+        <a href="#subscribe">Subscribe</a>
+        <a href="#login">Login</a>
+        <a href="#faq">FAQ</a>
       </nav>
     </div>
   </header>
@@ -33,7 +36,7 @@
         <p class="hero-sub">You do not need to be a trader. You do not need to code. You just need a debit card, a Windows 11 or Mac computer, and the willingness to follow simple steps. We built KnightTrader BloFin for exactly that.</p>
         <p class="hero-sub">This is not another trading course. This is a guided, one-click setup that installs Hermes locally, connects your accounts, configures the VPN, writes your credentials file, and starts the trading cron for you. You watch it run. You inspect every trade.</p>
         <div class="hero-actions">
-          <a href="#download" class="btn-primary">Start for $47/month</a>
+          <a href="#subscribe" class="btn-primary">Start for $47/month</a>
           <a href="#problem" class="btn-secondary">See why this is worth it</a>
         </div>
         <p class="hero-trust">Local-first. Keys stay on your PC. Trades happen on your BloFin account. You stay in control.</p>
@@ -185,8 +188,8 @@
 
     <section id="download" class="section">
       <div class="container">
-        <h2>Get started</h2>
-        <p class="download-intro">Sign in with your membership email and password to unlock downloads.</p>
+        <h2>Download</h2>
+        <p class="download-intro">Choose your platform. Active membership is required to download.</p>
         <div class="platform-selector">
           <button class="platform-btn active" data-platform="windows">Windows</button>
           <button class="platform-btn" data-platform="mac">Mac</button>
@@ -195,13 +198,31 @@
         <div class="download-actions">
           <button type="button" class="btn-primary" id="btn-download-windows">Download for Windows</button>
           <button type="button" class="btn-primary hidden" id="btn-download-mac">Download for Mac</button>
-          <p class="download-note" id="download-note">Sign in to unlock downloads.</p>
+          <p class="download-note" id="download-note">Active membership required.</p>
         </div>
 
+        <p class="os-notice">Requires Windows 11 or later. Mac build is provided when available.</p>
+        <p class="download-after">After install, open the How-To tab inside the app. It walks through every step from VPN to first trade.</p>
+      </div>
+    </section>
+
+    <section id="subscribe" class="section">
+      <div class="container">
+        <h2>Subscribe</h2>
+        <p class="subscribe-lead">KnightTrader BloFin is a $47/month membership. Signing up gives you access to the app, guided setup, and ongoing updates. Cancel anytime.</p>
+        <div class="subscribe-actions">
+          <button type="button" id="btn-subscribe" class="btn-primary">Subscribe — $47/month</button>
+          <p class="subscribe-note">Payment is processed securely by Stripe. After subscribing, use the same email and password to sign in and download.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="login" class="section">
+      <div class="container">
+        <h2>Login</h2>
+        <p class="login-intro">Already a member? Sign in below to access your account and downloads.</p>
         <div class="membership-gate">
           <div class="membership-card">
-            <h3>Membership required</h3>
-            <p>Sign in with your $47/month membership email and password to download. If you forgot your password, use the reset option below.</p>
             <form id="form-site-login" class="site-auth-form" novalidate>
               <label>
                 <span>Email</span>
@@ -212,7 +233,7 @@
                 <input type="password" id="site-password" placeholder="••••••••" autocomplete="current-password" required />
               </label>
               <div id="site-login-error" class="site-auth-error" role="alert" aria-live="polite"></div>
-              <button type="submit" id="btn-site-login" class="btn-primary">Sign in to download</button>
+              <button type="submit" id="btn-site-login" class="btn-primary">Sign in</button>
               <button type="button" id="btn-site-forgot" class="link-btn">Forgot password?</button>
             </form>
             <form id="form-site-forgot" class="site-auth-form hidden" novalidate>
@@ -231,10 +252,6 @@
             </div>
           </div>
         </div>
-
-        <p class="os-notice">Requires Windows 11 or later. Mac build is provided when available.</p>
-
-        <p class="download-after">After install, open the How-To tab inside the app. It walks through every step from VPN to first trade.</p>
       </div>
     </section>
 
@@ -268,11 +285,23 @@
           </details>
           <details>
             <summary>Is this a subscription or hosted service?</summary>
-            <p>It is a local app with guided setup. There is no ongoing account with us beyond the membership and the crypto exchange accounts you control.</p>
+            <p>This is a local app with guided setup. The $47/month membership unlocks the app and ongoing updates. There is no ongoing account with us beyond the membership and the crypto exchange accounts you control.</p>
           </details>
           <details>
             <summary>Why is this worth $47/month?</summary>
             <p>A basic custom trading bot costs $5,000-$12,000. A professional system costs $15,000-$150,000. Ongoing maintenance is 15-20% per year. At $47/month, you get guided setup, a local app, and a running trading assistant for less than the cost of one month of maintenance on a professional bot.</p>
+          </details>
+          <details>
+            <summary>Do I need to keep paying to use the app?</summary>
+            <p>Yes. Active membership is required to use KnightTrader BloFin. If your subscription ends, the app will alert you and stop working until membership is renewed.</p>
+          </details>
+          <details>
+            <summary>Can I cancel anytime?</summary>
+            <p>Yes. You can cancel through Stripe. After canceling, you can continue using the app until the end of your current billing period.</p>
+          </details>
+          <details>
+            <summary>What happens if I miss a payment?</summary>
+            <p>If a payment fails, the app will alert you and stop working until the membership is renewed. You can renew directly from the app without re-entering credentials.</p>
           </details>
         </div>
       </div>

@@ -202,4 +202,11 @@
   }
 
   updateDownloadLinks().then(() => selectPlatform('windows'));
+
+  const btnSubscribe = document.getElementById('btn-subscribe');
+  if (btnSubscribe) {
+    btnSubscribe.addEventListener('click', () => {
+      window.open(STRIPE_CHECKOUT_URL, '_blank', 'noopener,noreferrer');
+    });
+  }
 })();
