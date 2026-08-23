@@ -11,7 +11,7 @@
     { email: 'tails123@gmail.com', password: 'blohunterdaddy1!' },
     { email: '1bananaonthewall@gmail.com', password: 'Carterjaxon15!' },
   ];
-  const STRIPE_CHECKOUT_URL = 'https://buy.stripe.com/example-renew';
+  const STRIPE_CHECKOUT_URL = 'https://buy.stripe.com/cNi3cwe6Wb0oc991JOe3e0b';
   const SESSION_KEY = 'kt-site-session';
 
   function normalizeEmail(value) { return String(value || '').trim().toLowerCase(); }
