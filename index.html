@@ -106,6 +106,42 @@
           <p class="download-fallback"><a id="release-page-link" href="https://github.com/mknight2690-sys/KnightTrader-BloFin/releases/latest" target="_blank" rel="noopener noreferrer">Open release page</a></p>
         </div>
 
+        <div class="membership-gate">
+          <div class="membership-card">
+            <h3>Membership required</h3>
+            <p>Sign in with your $47/month membership email and password to download. If you forgot your password, use the reset option below.</p>
+            <form id="form-site-login" class="site-auth-form" novalidate>
+              <label>
+                <span>Email</span>
+                <input type="email" id="site-email" placeholder="you@example.com" autocomplete="email" required />
+              </label>
+              <label>
+                <span>Password</span>
+                <input type="password" id="site-password" placeholder="••••••••" autocomplete="current-password" required />
+              </label>
+              <div id="site-login-error" class="site-auth-error" role="alert" aria-live="polite"></div>
+              <button type="submit" id="btn-site-login" class="btn-primary">Sign in to download</button>
+              <button type="button" id="btn-site-forgot" class="link-btn">Forgot password?</button>
+            </form>
+            <form id="form-site-forgot" class="site-auth-form hidden" novalidate>
+              <label>
+                <span>Account email</span>
+                <input type="email" id="site-forgot-email" placeholder="you@example.com" autocomplete="email" required />
+              </label>
+              <div id="site-forgot-error" class="site-auth-error" role="alert" aria-live="polite"></div>
+              <div id="site-forgot-success" class="site-auth-success" role="status" aria-live="polite"></div>
+              <button type="submit" id="btn-site-forgot-send" class="btn-primary">Send reset link</button>
+              <button type="button" id="btn-site-forgot-back" class="link-btn">Back to sign in</button>
+            </form>
+            <div class="membership-footer">
+              <span>New here? </span>
+              <button type="button" id="btn-start-checkout" class="link-btn">Join membership — $47/mo</button>
+            </div>
+          </div>
+        </div>
+
+        <p class="os-notice">Requires Windows 11 or later.</p>
+
         <p class="download-after">After install, open the How-To tab inside the app. It includes guidance for Hermes setup, API keys, first-time configuration, and keeping your computer awake.</p>
       </div>
     </section>

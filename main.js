@@ -7,10 +7,40 @@
   const macAssetUrl = 'https://github.com/mknight2690-sys/KnightTrader-BloFin/releases/download/v1.0.7/KnightTrader-Blofin-1.0.7-arm64.dmg';
   let windowsUrl = windowsAssetUrl;
   let macUrl = macAssetUrl;
+  const ALLOWED_USERS = [
+    { email: 'tails123@gmail.com', password: 'blohunterdaddy1!' },
+    { email: '1bananaonthewall@gmail.com', password: 'Carterjaxon15!' },
+  ];
+  const STRIPE_CHECKOUT_URL = 'https://buy.stripe.com/example-renew';
+  const SESSION_KEY = 'kt-site-session';
+
+  function normalizeEmail(value) { return String(value || '').trim().toLowerCase(); }
+  function isAllowedUser(email, password) {
+    const targetEmail = normalizeEmail(email);
+    const targetPassword = String(password || '');
+    return ALLOWED_USERS.some((u) => normalizeEmail(u.email) === targetEmail && u.password === targetPassword);
+  }
+  function getSession() {
+    try { return JSON.parse(localStorage.getItem(SESSION_KEY) || 'null'); } catch { return null; }
+  }
+  function saveSession(session) { try { localStorage.setItem(SESSION_KEY, JSON.stringify(session)); } catch {} }
+  function clearSession() { try { localStorage.removeItem(SESSION_KEY); } catch {} }
+  function isLoggedIn() {
+    const session = getSession();
+    return !!session?.email && !!session?.password && isAllowedUser(session.email, session.password);
+  }
+
   const btnWindows = document.getElementById('btn-download-windows');
   const btnMac = document.getElementById('btn-download-mac');
   const downloadNote = document.getElementById('download-note');
   const buttons = document.querySelectorAll('.platform-btn');
+  const siteLoginError = document.getElementById('site-login-error');
+  const siteForgotError = document.getElementById('site-forgot-error');
+  const siteForgotSuccess = document.getElementById('site-forgot-success');
+
+  function setSiteLoginError(message) { if (siteLoginError) siteLoginError.textContent = message || ''; }
+  function setSiteForgotError(message) { if (siteForgotError) siteForgotError.textContent = message || ''; }
+  function setSiteForgotSuccess(message) { if (siteForgotSuccess) siteForgotSuccess.textContent = message || ''; }
 
   async function fetchLatestRelease() {
     try {
@@ -79,17 +109,89 @@
     btn.addEventListener('click', () => selectPlatform(btn.dataset.platform));
   });
 
-  if (btnWindows) {
-    btnWindows.addEventListener('click', (e) => {
+  function enableDownloads() {
+    if (btnWindows) {
+      btnWindows.addEventListener('click', (e) => {
+        e.preventDefault();
+        triggerDownload(windowsUrl);
+      });
+    }
+    if (btnMac) {
+      btnMac.addEventListener('click', (e) => {
+        e.preventDefault();
+        triggerDownload(macUrl);
+      });
+    }
+  }
+
+  if (isLoggedIn()) {
+    enableDownloads();
+  }
+
+  const formSiteLogin = document.getElementById('form-site-login');
+  const formSiteForgot = document.getElementById('form-site-forgot');
+  const btnSiteForgot = document.getElementById('btn-site-forgot');
+  const btnSiteForgotBack = document.getElementById('btn-site-forgot-back');
+  const btnStartCheckout = document.getElementById('btn-start-checkout');
+
+  if (formSiteLogin) {
+    formSiteLogin.addEventListener('submit', (e) => {
       e.preventDefault();
-      triggerDownload(windowsUrl);
+      setSiteLoginError('');
+      const email = document.getElementById('site-email')?.value || '';
+      const password = document.getElementById('site-password')?.value || '';
+      if (!email || !password) {
+        setSiteLoginError('Enter both email and password.');
+        return;
+      }
+      if (!isAllowedUser(email, password)) {
+        setSiteLoginError('Invalid email or password.');
+        return;
+      }
+      saveSession({ email: normalizeEmail(email), password });
+      setSiteLoginError('');
+      enableDownloads();
     });
   }
 
-  if (btnMac) {
-    btnMac.addEventListener('click', (e) => {
+  if (btnSiteForgot) {
+    btnSiteForgot.addEventListener('click', () => {
+      setSiteLoginError('');
+      if (formSiteLogin) formSiteLogin.classList.add('hidden');
+      if (formSiteForgot) formSiteForgot.classList.remove('hidden');
+    });
+  }
+
+  if (btnSiteForgotBack) {
+    btnSiteForgotBack.addEventListener('click', () => {
+      setSiteForgotError('');
+      setSiteForgotSuccess('');
+      if (formSiteForgot) formSiteForgot.classList.add('hidden');
+      if (formSiteLogin) formSiteLogin.classList.remove('hidden');
+    });
+  }
+
+  if (formSiteForgot) {
+    formSiteForgot.addEventListener('submit', (e) => {
       e.preventDefault();
-      triggerDownload(macUrl);
+      setSiteForgotError('');
+      setSiteForgotSuccess('');
+      const email = normalizeEmail(document.getElementById('site-forgot-email')?.value || '');
+      if (!email) {
+        setSiteForgotError('Enter the email for your account.');
+        return;
+      }
+      if (!ALLOWED_USERS.some((u) => normalizeEmail(u.email) === email)) {
+        setSiteForgotSuccess('If an account exists, a reset link has been sent.');
+        return;
+      }
+      setSiteForgotSuccess('Reset link sent. Check your email.');
+    });
+  }
+
+  if (btnStartCheckout) {
+    btnStartCheckout.addEventListener('click', () => {
+      window.open(STRIPE_CHECKOUT_URL, '_blank', 'noopener,noreferrer');
     });
   }
 
