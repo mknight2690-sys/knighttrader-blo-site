@@ -3,8 +3,10 @@
   const repo = 'KnightTrader-BloFin';
   const releaseApiUrl = `https://api.github.com/repos/${owner}/${repo}/releases/latest`;
   const releaseWebBase = `https://github.com/${owner}/${repo}/releases`;
-  let windowsUrl = `${releaseWebBase}/latest`;
-  let macUrl = `${releaseWebBase}/latest`;
+  const windowsAssetUrl = 'https://github.com/mknight2690-sys/KnightTrader-BloFin/releases/download/v1.0.7/KnightTrader.Blofin.Setup.1.0.7.exe';
+  const macAssetUrl = 'https://github.com/mknight2690-sys/KnightTrader-BloFin/releases/download/v1.0.7/KnightTrader-Blofin-1.0.7-arm64.dmg';
+  let windowsUrl = windowsAssetUrl;
+  let macUrl = macAssetUrl;
   const btnWindows = document.getElementById('btn-download-windows');
   const btnMac = document.getElementById('btn-download-mac');
   const downloadNote = document.getElementById('download-note');
@@ -41,10 +43,6 @@
         macUrl = macAsset.browser_download_url;
       }
     }
-
-    const fallbackUrl = `${releaseWebBase}/latest`;
-    if (!windowsUrl || windowsUrl === `${releaseWebBase}/latest`) windowsUrl = fallbackUrl;
-    if (!macUrl || macUrl === `${releaseWebBase}/latest`) macUrl = fallbackUrl;
   }
 
   function triggerDownload(url) {
@@ -84,18 +82,14 @@
   if (btnWindows) {
     btnWindows.addEventListener('click', (e) => {
       e.preventDefault();
-      const url = windowsUrl;
-      if (!url || url === `${releaseWebBase}/latest`) return;
-      triggerDownload(url);
+      triggerDownload(windowsUrl);
     });
   }
 
   if (btnMac) {
     btnMac.addEventListener('click', (e) => {
       e.preventDefault();
-      const url = macUrl;
-      if (!url || url === `${releaseWebBase}/latest`) return;
-      triggerDownload(url);
+      triggerDownload(macUrl);
     });
   }
 
