@@ -140,6 +140,21 @@
   const btnSiteForgotBack = document.getElementById('btn-site-forgot-back');
   const btnStartCheckout = document.getElementById('btn-start-checkout');
 
+  const subscribeButtons = [
+    document.getElementById('btn-subscribe-top'),
+    document.getElementById('btn-subscribe-hero'),
+    document.getElementById('btn-subscribe'),
+    document.getElementById('btn-subscribe-pricing'),
+  ];
+
+  subscribeButtons.forEach((btn) => {
+    if (btn) {
+      btn.addEventListener('click', () => {
+        window.open(STRIPE_CHECKOUT_URL, '_blank', 'noopener,noreferrer');
+      });
+    }
+  });
+
   if (formSiteLogin) {
     formSiteLogin.addEventListener('submit', (e) => {
       e.preventDefault();
@@ -202,11 +217,4 @@
   }
 
   updateDownloadLinks().then(() => selectPlatform('windows'));
-
-  const btnSubscribe = document.getElementById('btn-subscribe');
-  if (btnSubscribe) {
-    btnSubscribe.addEventListener('click', () => {
-      window.open(STRIPE_CHECKOUT_URL, '_blank', 'noopener,noreferrer');
-    });
-  }
 })();
