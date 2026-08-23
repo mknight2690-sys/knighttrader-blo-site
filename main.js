@@ -1,10 +1,10 @@
 (() => {
-  const owner = 'mknight2690-sys';
+  const owner = '1bananaonthewall-ux';
   const repo = 'KnightTrader-BloFin';
   const releaseApiUrl = `https://api.github.com/repos/${owner}/${repo}/releases/latest`;
   const releaseWebBase = `https://github.com/${owner}/${repo}/releases`;
-  const windowsAssetUrl = 'https://github.com/mknight2690-sys/KnightTrader-BloFin/releases/download/v1.0.7/KnightTrader.Blofin.Setup.1.0.7.exe';
-  const macAssetUrl = 'https://github.com/mknight2690-sys/KnightTrader-BloFin/releases/download/v1.0.7/KnightTrader-Blofin-1.0.7-arm64.dmg';
+  const windowsAssetUrl = 'https://github.com/1bananaonthewall-ux/KnightTrader-BloFin/releases/download/v1.0.7/KnightTrader.Blofin.Setup.1.0.7.exe';
+  const macAssetUrl = 'https://github.com/1bananaonthewall-ux/KnightTrader-BloFin/releases/download/v1.0.7/KnightTrader-Blofin-1.0.7-arm64.dmg';
   let windowsUrl = windowsAssetUrl;
   let macUrl = macAssetUrl;
   const ALLOWED_USERS = [
