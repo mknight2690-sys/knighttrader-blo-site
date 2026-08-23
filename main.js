@@ -1,8 +1,10 @@
 (() => {
-  const releaseBase = 'https://github.com/mknight2690-sys/KnightTrader-BloFin';
-  const releaseApiUrl = `${releaseBase}/releases/latest`;
-  let windowsUrl = `${releaseBase}/releases/latest`;
-  let macUrl = `${releaseBase}/releases/latest`;
+  const owner = '1bananaonthewall-ux';
+  const repo = 'KnightTrader-BloFin';
+  const releaseApiUrl = `https://api.github.com/repos/${owner}/${repo}/releases/latest`;
+  const releaseWebBase = `https://github.com/${owner}/${repo}/releases`;
+  let windowsUrl = `${releaseWebBase}/latest`;
+  let macUrl = `${releaseWebBase}/latest`;
   const btnWindows = document.getElementById('btn-download-windows');
   const btnMac = document.getElementById('btn-download-mac');
   const downloadNote = document.getElementById('download-note');
@@ -21,14 +23,17 @@
   }
 
   function findAsset(assets, pattern) {
-    return assets.find((asset) => pattern.test(asset.name));
+    if (!Array.isArray(assets)) return null;
+    return assets.find((asset) => pattern.test(asset.name)) || null;
   }
 
   async function updateDownloadLinks() {
     const release = await fetchLatestRelease();
     if (release?.assets?.length) {
-      const windowsAsset = findAsset(release.assets, /\.exe$/i);
-      const macAsset = findAsset(release.assets, /\.dmg$/i);
+      const windowsAsset = findAsset(release.assets, /KnightTrader[-.]Blofin[-.]Setup.*\.exe$/i)
+        || findAsset(release.assets, /\.exe$/i);
+      const macAsset = findAsset(release.assets, /KnightTrader[-.]Blofin.*\.dmg$/i)
+        || findAsset(release.assets, /\.dmg$/i);
       if (windowsAsset?.browser_download_url) {
         windowsUrl = windowsAsset.browser_download_url;
       }
@@ -36,32 +41,17 @@
         macUrl = macAsset.browser_download_url;
       }
     }
+
+    const fallbackUrl = `${releaseWebBase}/latest`;
+    if (!windowsUrl || windowsUrl === `${releaseWebBase}/latest`) windowsUrl = fallbackUrl;
+    if (!macUrl || macUrl === `${releaseWebBase}/latest`) macUrl = fallbackUrl;
   }
 
-  async function forceDownload(url, filename) {
+  function triggerDownload(url) {
     try {
-      const res = await fetch(url, { mode: 'cors' });
-      if (!res.ok) throw new Error('Download failed');
-      const blob = await res.blob();
-      const blobUrl = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = blobUrl;
-      a.download = filename || '';
-      a.target = '_blank';
-      document.body.appendChild(a);
-      a.click();
-      setTimeout(() => {
-        document.body.removeChild(a);
-        URL.revokeObjectURL(blobUrl);
-      }, 0);
+      window.open(url, '_blank', 'noopener,noreferrer');
     } catch {
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = filename || '';
-      a.target = '_blank';
-      document.body.appendChild(a);
-      a.click();
-      setTimeout(() => document.body.removeChild(a), 0);
+      // ignore and fall through
     }
   }
 
@@ -74,14 +64,10 @@
     });
     if (btnWindows) {
       btnWindows.classList.toggle('hidden', isMac);
-      btnWindows.setAttribute('href', isMac ? '' : windowsUrl);
-      btnWindows.setAttribute('download', isMac ? '' : 'KnightTrader-BloFin-Setup.exe');
       btnWindows.textContent = 'Download for Windows';
     }
     if (btnMac) {
       btnMac.classList.toggle('hidden', !isMac);
-      btnMac.setAttribute('href', isMac ? macUrl : '');
-      btnMac.setAttribute('download', isMac ? 'KnightTrader-BloFin.dmg' : '');
       btnMac.textContent = 'Download for Mac';
     }
     if (downloadNote) {
@@ -98,18 +84,18 @@
   if (btnWindows) {
     btnWindows.addEventListener('click', (e) => {
       e.preventDefault();
-      const href = btnWindows.getAttribute('href');
-      if (!href) return;
-      forceDownload(href, 'KnightTrader-BloFin-Setup.exe');
+      const url = windowsUrl;
+      if (!url || url === `${releaseWebBase}/latest`) return;
+      triggerDownload(url);
     });
   }
 
   if (btnMac) {
     btnMac.addEventListener('click', (e) => {
       e.preventDefault();
-      const href = btnMac.getAttribute('href');
-      if (!href) return;
-      forceDownload(href, 'KnightTrader-BloFin.dmg');
+      const url = macUrl;
+      if (!url || url === `${releaseWebBase}/latest`) return;
+      triggerDownload(url);
     });
   }
 
