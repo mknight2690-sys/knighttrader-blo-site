@@ -3,10 +3,16 @@
   const repo = 'KnightTrader-BloFin';
   const releaseApiUrl = `https://api.github.com/repos/${owner}/${repo}/releases/latest`;
   const releaseWebBase = `https://github.com/${owner}/${repo}/releases`;
-  const windowsAssetUrl = 'https://github.com/1bananaonthewall-ux/KnightTrader-BloFin/releases/download/v1.0.9/KnightTrader.Blofin.Setup.1.0.9.exe';
-  const macAssetUrl = 'https://github.com/1bananaonthewall-ux/KnightTrader-BloFin/releases/download/v1.0.9/KnightTrader-Blofin-1.0.9-arm64.dmg';
+  // Fallback URLs point at the latest *published* release (v1.1.16).
+  // These are overwritten at runtime when the GitHub API responds
+  // successfully — they are only here for offline / API-blocked cases.
+  const FALLBACK_TAG = 'v1.1.16';
+  const windowsAssetUrl = `https://github.com/${owner}/${repo}/releases/download/${FALLBACK_TAG}/KnightTrader-BloFin-Setup-${FALLBACK_TAG.replace(/^v/, '')}.exe`;
+  const macAssetUrl = `https://github.com/${owner}/${repo}/releases/download/${FALLBACK_TAG}/KnightTrader-BloFin-Setup-${FALLBACK_TAG.replace(/^v/, '')}.dmg`;
   let windowsUrl = windowsAssetUrl;
   let macUrl = macAssetUrl;
+  let latestTag = FALLBACK_TAG;
+  let hasMacAsset = true;
   const ALLOWED_USERS = [
     { email: 'tails123@gmail.com', password: 'blohunterdaddy1!' },
     { email: '1bananaonthewall@gmail.com', password: 'Carterjaxon15!' },
@@ -33,6 +39,8 @@
   const btnWindows = document.getElementById('btn-download-windows');
   const btnMac = document.getElementById('btn-download-mac');
   const downloadNote = document.getElementById('download-note');
+  const downloadLatest = document.getElementById('download-latest');
+  const downloadPlatformName = document.getElementById('download-platform-name');
   const buttons = document.querySelectorAll('.platform-btn');
   const siteLoginError = document.getElementById('site-login-error');
   const siteForgotError = document.getElementById('site-forgot-error');
@@ -54,24 +62,38 @@
     }
   }
 
-  function findAsset(assets, pattern) {
+  function findAsset(assets, patterns) {
     if (!Array.isArray(assets)) return null;
-    return assets.find((asset) => pattern.test(asset.name)) || null;
+    for (const pattern of patterns) {
+      const match = assets.find((asset) => pattern.test(asset.name));
+      if (match) return match;
+    }
+    return null;
   }
 
   async function updateDownloadLinks() {
     const release = await fetchLatestRelease();
-    if (release?.assets?.length) {
-      const windowsAsset = findAsset(release.assets, /KnightTrader[-.]Blofin[-.]Setup.*\.exe$/i)
-        || findAsset(release.assets, /\.exe$/i);
-      const macAsset = findAsset(release.assets, /KnightTrader[-.]Blofin.*\.dmg$/i)
-        || findAsset(release.assets, /\.dmg$/i);
-      if (windowsAsset?.browser_download_url) {
-        windowsUrl = windowsAsset.browser_download_url;
-      }
-      if (macAsset?.browser_download_url) {
-        macUrl = macAsset.browser_download_url;
-      }
+    if (!release) return;
+    if (release.tag_name) latestTag = String(release.tag_name);
+    const assets = Array.isArray(release.assets) ? release.assets : [];
+    // Prefer the NSIS Setup .exe; fall back to the portable .zip if no
+    // .exe is attached (some recent releases only ship a .zip).
+    const windowsAsset = findAsset(assets, [
+      /KnightTrader[-.]Blofin[-.]Setup.*\.exe$/i,
+      /\.exe$/i,
+    ]) || findAsset(assets, [/KnightTrader[-.]Blofin[-.]Setup.*\.zip$/i]);
+    const macAsset = findAsset(assets, [
+      /KnightTrader[-.]Blofin.*\.dmg$/i,
+      /\.dmg$/i,
+    ]);
+    if (windowsAsset?.browser_download_url) {
+      windowsUrl = windowsAsset.browser_download_url;
+    }
+    if (macAsset?.browser_download_url) {
+      macUrl = macAsset.browser_download_url;
+      hasMacAsset = true;
+    } else {
+      hasMacAsset = false;
     }
   }
 
@@ -83,25 +105,40 @@
     }
   }
 
+  let activePlatform = 'windows';
   function selectPlatform(key) {
+    activePlatform = key;
     const isMac = key === 'mac';
     buttons.forEach((btn) => {
       const active = btn.dataset.platform === key;
       btn.classList.toggle('active', active);
       btn.setAttribute('aria-pressed', String(active));
+      btn.setAttribute('aria-selected', String(active));
     });
     if (btnWindows) {
       btnWindows.classList.toggle('hidden', isMac);
-      btnWindows.textContent = 'Download for Windows';
+      btnWindows.textContent = isMac ? '' : 'Download for Windows';
     }
     if (btnMac) {
       btnMac.classList.toggle('hidden', !isMac);
-      btnMac.textContent = 'Download for Mac';
+      btnMac.textContent = hasMacAsset ? 'Download for Mac' : 'Mac build not in this release';
+      btnMac.disabled = !hasMacAsset;
+      btnMac.setAttribute('aria-disabled', String(!hasMacAsset));
     }
     if (downloadNote) {
       downloadNote.textContent = isMac
-        ? 'Mac: download the KT BloFin .dmg directly.'
-        : 'Windows: download the KT BloFin .exe installer directly.';
+        ? (hasMacAsset
+            ? 'Mac: download the KT BloFin .dmg directly.'
+            : 'No Mac build was attached to the latest release. Use the GitHub releases page to find the most recent Mac build.')
+        : (windowsUrl && /\.zip(\?|$)/.test(windowsUrl)
+            ? 'Windows: download the portable KT BloFin .zip, unzip it, and run the .exe inside.'
+            : 'Windows: download the KT BloFin installer .exe directly.');
+    }
+    if (downloadPlatformName) {
+      downloadPlatformName.textContent = isMac ? 'macOS 11 or later' : 'Windows 11 or later';
+    }
+    if (downloadLatest) {
+      downloadLatest.textContent = latestTag || FALLBACK_TAG;
     }
   }
 
@@ -123,6 +160,7 @@
     if (btnMac) {
       btnMac.onclick = (e) => {
         e.preventDefault();
+        if (!hasMacAsset) return;
         if (!isLoggedIn()) {
           setSiteLoginError('Sign in first to download.');
           return;
