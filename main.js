@@ -1,5 +1,5 @@
 (() => {
-  const owner = '1bananaonthewall-ux';
+  const owner = 'mknight2690-sys';
   const repo = 'KnightTrader-BloFin';
   const releaseApiUrl = `https://api.github.com/repos/${owner}/${repo}/releases/latest`;
   const releaseWebBase = `https://github.com/${owner}/${repo}/releases`;
@@ -120,22 +120,31 @@
       btnWindows.textContent = isMac ? '' : 'Download for Windows';
     }
     if (btnMac) {
+      // Always show the Mac button when its tab is selected, regardless
+      // of whether the latest release has a Mac asset. We display a
+      // clear "not in this release" message and a link to the releases
+      // page so Mac users are never silently abandoned.
       btnMac.classList.toggle('hidden', !isMac);
-      btnMac.textContent = hasMacAsset ? 'Download for Mac' : 'Mac build not in this release';
+      btnMac.textContent = hasMacAsset ? 'Download for Mac' : 'No Mac build in this release';
       btnMac.disabled = !hasMacAsset;
       btnMac.setAttribute('aria-disabled', String(!hasMacAsset));
+      btnMac.setAttribute('title', hasMacAsset
+        ? 'Download the KnightTrader BloFin macOS installer'
+        : 'Browse the GitHub releases page to find the most recent Mac build.');
     }
     if (downloadNote) {
-      downloadNote.textContent = isMac
-        ? (hasMacAsset
-            ? 'Mac: download the KT BloFin .dmg directly.'
-            : 'No Mac build was attached to the latest release. Use the GitHub releases page to find the most recent Mac build.')
-        : (windowsUrl && /\.zip(\?|$)/.test(windowsUrl)
-            ? 'Windows: download the portable KT BloFin .zip, unzip it, and run the .exe inside.'
-            : 'Windows: download the KT BloFin installer .exe directly.');
+      if (isMac) {
+        downloadNote.textContent = hasMacAsset
+          ? 'macOS: download the KT BloFin .dmg, then drag the app into Applications.'
+          : 'The latest release has no Mac asset. Older Mac builds are on the GitHub releases page below.';
+      } else if (windowsUrl && /\.zip(\?|$)/.test(windowsUrl)) {
+        downloadNote.textContent = 'Windows: download the portable KT BloFin .zip, unzip it, and run the .exe inside.';
+      } else {
+        downloadNote.textContent = 'Windows: download the KT BloFin installer .exe directly.';
+      }
     }
     if (downloadPlatformName) {
-      downloadPlatformName.textContent = isMac ? 'macOS 11 or later' : 'Windows 11 or later';
+      downloadPlatformName.textContent = isMac ? 'macOS 11 (Big Sur) or later' : 'Windows 11 or later';
     }
     if (downloadLatest) {
       downloadLatest.textContent = latestTag || FALLBACK_TAG;

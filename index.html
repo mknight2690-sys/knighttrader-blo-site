@@ -69,8 +69,8 @@
 
     <section class="section section-dark">
       <div class="container">
-        <h2>If you have a debit card and a Windows computer, this is for you.</h2>
-        <p class="section-lead">You do not need to know what an API key is. You do not need to know what a futures contract is. You do not need to know what "leverage" means. The in-app How-To tab explains every step in plain English, and the app installs and configures everything else for you.</p>
+        <h2>If you have a debit card and a computer, this is for you.</h2>
+        <p class="section-lead">You do not need to know what an API key is. You do not need to know what a futures contract is. You do not need to know what "leverage" means. The in-app How-To tab explains every step in plain English, and the app installs and configures everything else for you. Works on Windows 11 and on macOS 11 and newer.</p>
         <div class="audience-cards">
           <div class="audience-card">
             <div class="audience-icon" aria-hidden="true">🧭</div>
@@ -80,12 +80,12 @@
           <div class="audience-card">
             <div class="audience-icon" aria-hidden="true">⚡</div>
             <h3>You started setting up a bot and gave up</h3>
-            <p>Hermes has a lot of moving parts: a Python install, a Nous Portal key, a BloFin API key, VPN, and Windows Task Scheduler. Most people stop at step three. We remove those steps with one-click installers.</p>
+            <p>Hermes has a lot of moving parts: a Python install, a Nous Portal key, a BloFin API key, VPN, and a scheduled task. Most people stop at step three. We remove those steps with one-click installers on both Windows and Mac.</p>
           </div>
           <div class="audience-card">
             <div class="audience-icon" aria-hidden="true">🔐</div>
             <h3>You do not want to hand your money to a hosted bot</h3>
-            <p>KnightTrader BloFin is not a cloud product. The app, the assistant, and the API keys live on your PC. You can read every log line, pause the bot, or delete it without asking anyone.</p>
+            <p>KnightTrader BloFin is not a cloud product. The app, the assistant, and the API keys live on your computer. You can read every log line, pause the bot, or delete it without asking anyone.</p>
           </div>
         </div>
       </div>
@@ -94,7 +94,7 @@
     <section class="section">
       <div class="container">
         <h2>What it actually does, in plain English</h2>
-        <p class="section-lead">KnightTrader BloFin is a Windows app that runs a small AI trading assistant on your computer. That assistant looks at your BloFin account, decides whether to place or close a trade, and acts on a schedule. You watch the dashboard. You can stop it any time.</p>
+        <p class="section-lead">KnightTrader BloFin is a desktop app for Windows 11 and macOS 11+ that runs a small AI trading assistant on your computer. That assistant looks at your BloFin account, decides whether to place or close a trade, and acts on a schedule. You watch the dashboard. You can stop it any time.</p>
         <div class="plain-english-grid">
           <div class="plain-english-card">
             <div class="plain-english-num">1</div>
@@ -114,7 +114,7 @@
             <div class="plain-english-num">3</div>
             <div>
               <h3>The app installs and configures the assistant</h3>
-              <p>You click "Install Hermes". The app downloads the assistant, writes your keys into its sandboxed config folder, and tells Windows when to run it. You do not open a terminal window.</p>
+              <p>You click "Install Hermes". The app downloads the assistant, writes your keys into its sandboxed config folder, and registers a scheduled task on your computer (Windows Task Scheduler on Windows, launchd on macOS). You do not open a terminal window.</p>
             </div>
           </div>
           <div class="plain-english-card">
@@ -165,7 +165,7 @@
             <span class="not-x" aria-hidden="true">×</span>
             <div>
               <strong>It does not work on a closed laptop lid or an offline PC.</strong>
-              <p>The bot needs your PC awake and online. The How-To tab shows how to disable Sleep on Windows.</p>
+              <p>The bot needs your computer awake and online. The How-To tab shows how to disable Sleep on Windows and how to keep a Mac awake with caffeinate or Power Settings.</p>
             </div>
           </div>
         </div>
@@ -175,7 +175,7 @@
     <section id="how-it-works" class="section">
       <div class="container">
         <h2>What happens after you click "Join"</h2>
-        <p class="section-lead">You are not buying access to a cloud server. You are buying a guided path from "I have never used a bot" to "the bot is running on my PC" — five steps, about 45 minutes the first time.</p>
+        <p class="section-lead">You are not buying access to a cloud server. You are buying a guided path from "I have never used a bot" to "the bot is running on my computer" — five steps, about 45 minutes the first time.</p>
         <ol class="steps">
           <li>
             <span class="step-number">1</span>
@@ -187,22 +187,22 @@
           <li>
             <span class="step-number">2</span>
             <div>
-              <strong>Download the Windows installer</strong>
-              <p class="step-detail">The Mac build is provided when available — most current releases ship Windows only. Install it like any other app: double-click the .exe, accept the install prompt, done. No terminal, no Python, no PATH edits.</p>
+              <strong>Download the installer for your computer</strong>
+              <p class="step-detail">Windows users double-click the <code>.exe</code>, accept the install prompt, and you are done. Mac users open the <code>.dmg</code> and drag the app into Applications. No terminal, no Python, no PATH edits.</p>
             </div>
           </li>
           <li>
             <span class="step-number">3</span>
             <div>
               <strong>Open the How-To tab</strong>
-              <p class="step-detail">The first tab inside the app. It walks you through buying USDC on Coinbase with your debit card, sending it to BloFin, creating the BloFin API key, getting a free Nous Portal key, and stopping Windows from sleeping. Click by click.</p>
+              <p class="step-detail">The first tab inside the app. It walks you through buying USDC on Coinbase with your debit card, sending it to BloFin, creating the BloFin API key, getting a free Nous Portal key, and keeping your computer awake. Click by click.</p>
             </div>
           </li>
           <li>
             <span class="step-number">4</span>
             <div>
               <strong>One-click install the assistant</strong>
-              <p class="step-detail">Click "Install Hermes" in the app. The app downloads the assistant, writes your keys into its local sandbox, and registers a Windows scheduled task. You click. The app configures.</p>
+              <p class="step-detail">Click "Install Hermes" in the app. The app downloads the assistant, writes your keys into its local sandbox, and registers a scheduled task (Windows Task Scheduler on Windows, launchd on macOS). You click. The app configures.</p>
             </div>
           </li>
           <li>
@@ -221,7 +221,7 @@
         <h2>What is inside the app</h2>
         <div class="value-grid">
           <div class="value-card">
-            <div class="value-title">Windows desktop app</div>
+            <div class="value-title">Windows and Mac desktop app</div>
             <p>Guided setup, credential management, the Hermes sandbox, and the local dashboard — one app, not five different tools.</p>
           </div>
           <div class="value-card">
@@ -288,7 +288,7 @@
             <div class="pricing-label">USD, billed monthly through Stripe</div>
           </div>
           <ul class="pricing-list">
-            <li>Windows desktop app with guided setup</li>
+            <li>Windows and macOS desktop app with guided setup</li>
             <li>How-To tab that walks a total beginner from $0 to a trading assistant running</li>
             <li>Local credential storage, sandboxed Hermes install, dashboard and logs</li>
             <li>Free app updates as long as your membership is active</li>
@@ -322,9 +322,9 @@
           </div>
         <div class="download-actions" style="justify-content: center; margin-top: 14px;">
           <button type="button" class="btn-primary" id="btn-download-windows">Download for Windows</button>
-          <button type="button" class="btn-primary hidden" id="btn-download-mac" disabled aria-disabled="true">Mac build coming soon</button>
+          <button type="button" class="btn-primary hidden" id="btn-download-mac">Download for Mac</button>
           <p class="download-note" id="download-note">Active membership required to download.</p>
-          <p class="download-fallback"><a id="download-release-link" href="https://github.com/1bananaonthewall-ux/KnightTrader-BloFin/releases" rel="noopener noreferrer">Browse all releases on GitHub ↗</a></p>
+          <p class="download-fallback"><a id="download-release-link" href="https://github.com/mknight2690-sys/KnightTrader-BloFin/releases" rel="noopener noreferrer">Browse all releases on GitHub ↗</a></p>
         </div>
         <div class="membership-gate" style="margin-top: 18px;">
           <div class="membership-card" style="margin: 0 auto;">
@@ -359,7 +359,7 @@
             </div>
           </div>
         </div>
-        <p class="os-notice" style="text-align: center; margin-top: 14px;">Requires Windows 11 or later. The Mac build is provided when a Mac release ships — most recent releases are Windows-only. Use the GitHub releases page to browse older builds.</p>
+        <p class="os-notice" style="text-align: center; margin-top: 14px;">Requires Windows 11 or later, or macOS 11 (Big Sur) or later on Intel or Apple Silicon. The Mac build is shipped on every release that contains a macOS change. Use the GitHub releases page if you need an older Mac build.</p>
       </div>
     </section>
 
@@ -367,6 +367,10 @@
       <div class="container">
         <h2>Questions beginners actually ask</h2>
         <div class="faq">
+          <details>
+            <summary>Does this work on a Mac?</summary>
+            <p>Yes. KnightTrader BloFin ships a signed <code>.dmg</code> for macOS 11 (Big Sur) and newer on both Intel and Apple&nbsp;Silicon Macs. Open the <code>.dmg</code>, drag the app into Applications, and the How-To tab handles the rest. The only feature that is Windows-only inside the app is the ProtonVPN helper — Mac users can still run ProtonVPN manually, and the How-To tab shows how.</p>
+          </details>
           <details>
             <summary>I have never bought crypto before. Can I still use this?</summary>
             <p>Yes — that is exactly who this is built for. The How-To tab starts with how to open a Coinbase account, how to buy USDC with your debit card, and how to send it to BloFin. You do it once and the app remembers it.</p>
@@ -423,7 +427,7 @@
   <footer class="site-footer">
     <div class="container">
       <p><strong>KnightTrader BloFin</strong> is a local desktop trading assistant. It is not a brokerage, not a custodian, and not financial advice. Cryptocurrency perpetual futures are leveraged products — you can lose some, most, or all of the money you deposit on BloFin. By downloading and using this app, you accept full responsibility for the trades the assistant places on your behalf.</p>
-      <p class="footer-meta">KnightTrader BloFin — local-first trading assistant. Membership via Stripe. <a href="https://github.com/1bananaonthewall-ux/KnightTrader-BloFin">Source on GitHub</a>.</p>
+      <p class="footer-meta">KnightTrader BloFin — local-first trading assistant. Membership via Stripe. <a href="https://github.com/mknight2690-sys/KnightTrader-BloFin">Source on GitHub</a>.</p>
     </div>
   </footer>
 
