@@ -3,21 +3,18 @@
   const repo = 'KnightTrader-BloFin';
   const releaseApiUrl = `https://api.github.com/repos/${owner}/${repo}/releases/latest`;
   const releaseWebBase = `https://github.com/${owner}/${repo}/releases`;
-  // Fallback URLs point at the latest *published* release (v1.1.16).
+  // Fallback URLs point at the latest *published* release (v1.1.20).
   // These are overwritten at runtime when the GitHub API responds
   // successfully — they are only here for offline / API-blocked cases.
-  const FALLBACK_TAG = 'v1.1.16';
-  const windowsAssetUrl = `https://github.com/${owner}/${repo}/releases/download/${FALLBACK_TAG}/KnightTrader-BloFin-Setup-${FALLBACK_TAG.replace(/^v/, '')}.exe`;
-  const macAssetUrl = `https://github.com/${owner}/${repo}/releases/download/${FALLBACK_TAG}/KnightTrader-BloFin-Setup-${FALLBACK_TAG.replace(/^v/, '')}.dmg`;
+  const FALLBACK_TAG = 'v1.1.20';
+  const windowsAssetUrl = `https://github.com/${owner}/${repo}/releases/download/${FALLBACK_TAG}/KnightTrader-Blofin-Setup-${FALLBACK_TAG.replace(/^v/, '')}.exe`;
+  const macAssetUrl = `https://github.com/${owner}/${repo}/releases/download/${FALLBACK_TAG}/KnightTrader-Blofin-1.1.20-arm64.dmg`;
   let windowsUrl = windowsAssetUrl;
   let macUrl = macAssetUrl;
   let latestTag = FALLBACK_TAG;
   let hasMacAsset = true;
-  const ALLOWED_USERS = [
-    { email: 'tails123@gmail.com', password: 'blohunterdaddy1!' },
-    { email: '1bananaonthewall@gmail.com', password: 'Carterjaxon15!' },
-  ];
-  const STRIPE_CHECKOUT_URL = 'https://buy.stripe.com/cNi3cwe6Wb0oc991JOe3e0b';
+  const ALLOWED_USERS = []; // Authorized users configured in site admin — do not expose credentials in client source
+  const STRIPE_CHECKOUT_URL = ''; // Stripe checkout configured in site admin
   const SESSION_KEY = 'kt-site-session';
 
   function normalizeEmail(value) { return String(value || '').trim().toLowerCase(); }
