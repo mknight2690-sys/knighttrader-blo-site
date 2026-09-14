@@ -14,7 +14,7 @@
   let latestTag = FALLBACK_TAG;
   let hasMacAsset = true;
   const ALLOWED_USERS = []; // Authorized users configured in site admin — do not expose credentials in client source
-  const STRIPE_CHECKOUT_URL = ''; // Stripe checkout configured in site admin
+  const STRIPE_CHECKOUT_URL = 'https://buy.stripe.com/cNi3cwe6Wb0oc991JOe3e0b'; // Stripe Checkout — $47/mo
   const SESSION_KEY = 'kt-site-session';
 
   function normalizeEmail(value) { return String(value || '').trim().toLowerCase(); }
