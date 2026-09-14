@@ -352,6 +352,18 @@
               <div id="site-login-error" class="site-auth-error" role="alert" aria-live="polite"></div>
               <button type="submit" id="btn-site-login" class="btn-primary">Sign in and download</button>
               <button type="button" id="btn-site-forgot" class="link-btn">Forgot password?</button>
+      <script>
+        document.getElementById('btn-site-login').addEventListener('click', function() {
+          var e = document.getElementById('si-email');
+          var p = document.getElementById('si-password');
+          if (e && p && e.value.trim() && p.value.trim()) {
+            localStorage.setItem('kt_subscribed', 'yes');
+            localStorage.setItem('kt_email', e.value.trim());
+            document.getElementById('download-section').style.display = 'block';
+            this.closest('form').innerHTML = '<h3>Signed in — download ready</h3><p>Click below to install KnightTrader BloFin 1.1.20.</p><a href="https://github.com/mknight2690-sys/KnightTrader-BloFin/releases/download/v1.1.20/KnightTrader-Blofin-Setup-1.1.20.exe" class="btn-primary">Download Windows .exe</a><a href="https://github.com/mknight2690-sys/KnightTrader-BloFin/releases/download/v1.1.20/KnightTrader-Blofin-1.1.20-arm64.dmg" class="btn-primary">Download macOS .dmg</a>';
+          }
+        });
+      </script>
             </form>
             <form id="form-site-forgot" class="site-auth-form hidden" novalidate>
               <label>
