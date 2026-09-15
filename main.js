@@ -3,10 +3,10 @@
   const repo = 'KnightTrader-BloFin';
   const releaseApiUrl = `https://api.github.com/repos/${owner}/${repo}/releases/latest`;
   const releaseWebBase = `https://github.com/${owner}/${repo}/releases`;
-  // Fallback URLs point at the latest *published* release (v1.1.20).
+  // Fallback URLs point at the latest *published* release (v1.2.0).
   // These are overwritten at runtime when the GitHub API responds
   // successfully — they are only here for offline / API-blocked cases.
-  const FALLBACK_TAG = 'v1.1.20';
+  const FALLBACK_TAG = 'v1.2.0';
   const windowsAssetUrl = `https://github.com/${owner}/${repo}/releases/download/${FALLBACK_TAG}/KnightTrader-Blofin-Setup-${FALLBACK_TAG.replace(/^v/, '')}.exe`;
   const macAssetUrl = `https://github.com/${owner}/${repo}/releases/download/${FALLBACK_TAG}/KnightTrader-Blofin-1.1.20-arm64.dmg`;
   let windowsUrl = windowsAssetUrl;
