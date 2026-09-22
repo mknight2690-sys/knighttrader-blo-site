@@ -7,31 +7,8 @@
   // These are overwritten at runtime when the GitHub API responds
   // successfully — they are only here for offline / API-blocked cases.
   const FALLBACK_TAG = 'v1.2.1';
-  const windowsAssetUrl = `https://github.com/${owner}/${repo}/releases/download/${FALLBACK_TAG}/KnightTrader-Blofin-Setup-${FALLBACK_TAG.replace(/^v/, '')}.exe`;
-  const macAssetUrl = `https://github.com/${owner}/${repo}/releases/download/${FALLBACK_TAG}/KnightTrader-Blofin-1.2.1-arm64.dmg`;
-  let windowsUrl = windowsAssetUrl;
-  let macUrl = macAssetUrl;
-  let latestTag = FALLBACK_TAG;
-  let hasMacAsset = true;
-  const ALLOWED_USERS = []; // Authorized users configured in site admin — do not expose credentials in client source
-  const STRIPE_CHECKOUT_URL = 'https://buy.stripe.com/cNi3cwe6Wb0oc991JOe3e0b'; // Stripe Checkout — $47/mo
-  const SESSION_KEY = 'kt-site-session';
-
-  function normalizeEmail(value) { return String(value || '').trim().toLowerCase(); }
-  function isAllowedUser(email, password) {
-    const targetEmail = normalizeEmail(email);
-    const targetPassword = String(password || '');
-    return ALLOWED_USERS.some((u) => normalizeEmail(u.email) === targetEmail && u.password === targetPassword);
-  }
-  function getSession() {
-    try { return JSON.parse(localStorage.getItem(SESSION_KEY) || 'null'); } catch { return null; }
-  }
-  function saveSession(session) { try { localStorage.setItem(SESSION_KEY, JSON.stringify(session)); } catch {} }
-  function clearSession() { try { localStorage.removeItem(SESSION_KEY); } catch {} }
-  function isLoggedIn() {
-    const session = getSession();
-    return !!session?.email && !!session?.password && isAllowedUser(session.email, session.password);
-  }
+  const windowsUrl = `https://github.com/${owner}/${repo}/releases/download/${FALLBACK_TAG}/KnightTrader-Blofin-Setup-${FALLBACK_TAG.replace(/^v/, '')}.exe`;
+  const macUrl = `https://github.com/${owner}/${repo}/releases/download/${FALLBACK_TAG}/KnightTrader-Blofin-1.2.1-arm64.dmg`;
 
   const btnWindows = document.getElementById('btn-download-windows');
   const btnMac = document.getElementById('btn-download-mac');
@@ -39,60 +16,6 @@
   const downloadLatest = document.getElementById('download-latest');
   const downloadPlatformName = document.getElementById('download-platform-name');
   const buttons = document.querySelectorAll('.platform-btn');
-  const siteLoginError = document.getElementById('site-login-error');
-  const siteForgotError = document.getElementById('site-forgot-error');
-  const siteForgotSuccess = document.getElementById('site-forgot-success');
-
-  function setSiteLoginError(message) { if (siteLoginError) siteLoginError.textContent = message || ''; }
-  function setSiteForgotError(message) { if (siteForgotError) siteForgotError.textContent = message || ''; }
-  function setSiteForgotSuccess(message) { if (siteForgotSuccess) siteForgotSuccess.textContent = message || ''; }
-
-  async function fetchLatestRelease() {
-    try {
-      const res = await fetch(releaseApiUrl, {
-        headers: { Accept: 'application/vnd.github+json' },
-      });
-      if (!res.ok) return null;
-      return await res.json();
-    } catch {
-      return null;
-    }
-  }
-
-  function findAsset(assets, patterns) {
-    if (!Array.isArray(assets)) return null;
-    for (const pattern of patterns) {
-      const match = assets.find((asset) => pattern.test(asset.name));
-      if (match) return match;
-    }
-    return null;
-  }
-
-  async function updateDownloadLinks() {
-    const release = await fetchLatestRelease();
-    if (!release) return;
-    if (release.tag_name) latestTag = String(release.tag_name);
-    const assets = Array.isArray(release.assets) ? release.assets : [];
-    // Prefer the NSIS Setup .exe; fall back to the portable .zip if no
-    // .exe is attached (some recent releases only ship a .zip).
-    const windowsAsset = findAsset(assets, [
-      /KnightTrader[-.]Blofin[-.]Setup.*\.exe$/i,
-      /\.exe$/i,
-    ]) || findAsset(assets, [/KnightTrader[-.]Blofin[-.]Setup.*\.zip$/i]);
-    const macAsset = findAsset(assets, [
-      /KnightTrader[-.]Blofin.*\.dmg$/i,
-      /\.dmg$/i,
-    ]);
-    if (windowsAsset?.browser_download_url) {
-      windowsUrl = windowsAsset.browser_download_url;
-    }
-    if (macAsset?.browser_download_url) {
-      macUrl = macAsset.browser_download_url;
-      hasMacAsset = true;
-    } else {
-      hasMacAsset = false;
-    }
-  }
 
   function triggerDownload(url) {
     try {
@@ -103,48 +26,31 @@
   }
 
   let activePlatform = 'windows';
+
   function selectPlatform(key) {
     activePlatform = key;
     const isMac = key === 'mac';
     buttons.forEach((btn) => {
       const active = btn.dataset.platform === key;
       btn.classList.toggle('active', active);
-      btn.setAttribute('aria-pressed', String(active));
+      btn.setAttribute('aria-checked', String(active));
       btn.setAttribute('aria-selected', String(active));
     });
     if (btnWindows) {
       btnWindows.classList.toggle('hidden', isMac);
-      btnWindows.textContent = isMac ? '' : 'Download for Windows';
     }
     if (btnMac) {
-      // Always show the Mac button when its tab is selected, regardless
-      // of whether the latest release has a Mac asset. We display a
-      // clear "not in this release" message and a link to the releases
-      // page so Mac users are never silently abandoned.
       btnMac.classList.toggle('hidden', !isMac);
-      btnMac.textContent = hasMacAsset ? 'Download for Mac' : 'No Mac build in this release';
-      btnMac.disabled = !hasMacAsset;
-      btnMac.setAttribute('aria-disabled', String(!hasMacAsset));
-      btnMac.setAttribute('title', hasMacAsset
-        ? 'Download the KnightTrader BloFin macOS installer'
-        : 'Browse the GitHub releases page to find the most recent Mac build.');
     }
     if (downloadNote) {
       if (isMac) {
-        downloadNote.textContent = hasMacAsset
-          ? 'macOS: download the KT BloFin .dmg, then drag the app into Applications.'
-          : 'The latest release has no Mac asset. Older Mac builds are on the GitHub releases page below.';
-      } else if (windowsUrl && /\.zip(\?|$)/.test(windowsUrl)) {
-        downloadNote.textContent = 'Windows: download the portable KT BloFin .zip, unzip it, and run the .exe inside.';
+        downloadNote.textContent = 'macOS: download the KT BloFin .dmg, then drag the app into Applications.';
       } else {
-        downloadNote.textContent = 'Windows: download the KT BloFin installer .exe directly.';
+        downloadNote.textContent = 'Windows: download the KT BloFin installer .exe, then double-click to install.';
       }
     }
     if (downloadPlatformName) {
       downloadPlatformName.textContent = isMac ? 'macOS 11 (Big Sur) or later' : 'Windows 11 or later';
-    }
-    if (downloadLatest) {
-      downloadLatest.textContent = latestTag || FALLBACK_TAG;
     }
   }
 
@@ -154,111 +60,18 @@
 
   function bindDownloads() {
     if (btnWindows) {
-      btnWindows.onclick = (e) => {
-        e.preventDefault();
-        if (!isLoggedIn()) {
-          setSiteLoginError('Sign in first to download.');
-          return;
-        }
-        triggerDownload(windowsUrl);
-      };
+      btnWindows.onclick = () => triggerDownload(windowsUrl);
     }
     if (btnMac) {
-      btnMac.onclick = (e) => {
-        e.preventDefault();
-        if (!hasMacAsset) return;
-        if (!isLoggedIn()) {
-          setSiteLoginError('Sign in first to download.');
-          return;
-        }
-        triggerDownload(macUrl);
-      };
+      btnMac.onclick = () => triggerDownload(macUrl);
     }
   }
 
   bindDownloads();
 
-  const formSiteLogin = document.getElementById('form-site-login');
-  const formSiteForgot = document.getElementById('form-site-forgot');
-  const btnSiteForgot = document.getElementById('btn-site-forgot');
-  const btnSiteForgotBack = document.getElementById('btn-site-forgot-back');
-  const btnStartCheckout = document.getElementById('btn-start-checkout');
-
-  const subscribeButtons = [
-    document.getElementById('btn-subscribe-top'),
-    document.getElementById('btn-subscribe-hero'),
-    document.getElementById('btn-subscribe'),
-    document.getElementById('btn-subscribe-pricing'),
-  ];
-
-  subscribeButtons.forEach((btn) => {
-    if (btn) {
-      btn.addEventListener('click', () => {
-        window.open(STRIPE_CHECKOUT_URL, '_blank', 'noopener,noreferrer');
-      });
-    }
-  });
-
-  if (formSiteLogin) {
-    formSiteLogin.addEventListener('submit', (e) => {
-      e.preventDefault();
-      setSiteLoginError('');
-      const email = document.getElementById('site-email')?.value || '';
-      const password = document.getElementById('site-password')?.value || '';
-      if (!email || !password) {
-        setSiteLoginError('Enter both email and password.');
-        return;
-      }
-      if (!isAllowedUser(email, password)) {
-        setSiteLoginError('Invalid email or password.');
-        return;
-      }
-      saveSession({ email: normalizeEmail(email), password });
-      setSiteLoginError('');
-      setSiteLoginError('Signed in. You can download now.');
-    });
+  // Set initial platform label
+  if (downloadLatest) {
+    downloadLatest.textContent = FALLBACK_TAG;
   }
-
-  if (btnSiteForgot) {
-    btnSiteForgot.addEventListener('click', () => {
-      setSiteLoginError('');
-      if (formSiteLogin) formSiteLogin.classList.add('hidden');
-      if (formSiteForgot) formSiteForgot.classList.remove('hidden');
-    });
-  }
-
-  if (btnSiteForgotBack) {
-    btnSiteForgotBack.addEventListener('click', () => {
-      setSiteForgotError('');
-      setSiteForgotSuccess('');
-      if (formSiteForgot) formSiteForgot.classList.add('hidden');
-      if (formSiteLogin) formSiteLogin.classList.remove('hidden');
-    });
-  }
-
-  if (formSiteForgot) {
-    formSiteForgot.addEventListener('submit', (e) => {
-      e.preventDefault();
-      setSiteForgotError('');
-      setSiteForgotSuccess('');
-      const email = normalizeEmail(document.getElementById('site-forgot-email')?.value || '');
-      if (!email) {
-        setSiteForgotError('Enter the email for your account.');
-        return;
-      }
-      if (!ALLOWED_USERS.some((u) => normalizeEmail(u.email) === email)) {
-        setSiteForgotSuccess('If an account exists, a reset link has been sent.');
-        return;
-      }
-      setSiteForgotSuccess('Reset link sent. Check your email.');
-    });
-  }
-
-  if (btnStartCheckout) {
-    btnStartCheckout.addEventListener('click', () => {
-      window.open(STRIPE_CHECKOUT_URL, '_blank', 'noopener,noreferrer');
-    });
-  }
-
-  updateDownloadLinks().then(() => selectPlatform('windows'));
+  selectPlatform('windows');
 })();

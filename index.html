@@ -21,12 +21,9 @@
       <nav class="site-nav">
         <a href="#how-it-works">How it works</a>
         <a href="#download">Download</a>
-        <a href="#pricing">Pricing</a>
+        <a href="#what-you-get">What you get</a>
         <a href="#faq">FAQ</a>
       </nav>
-      <div class="header-cta">
-        <button type="button" id="btn-subscribe-top" class="btn-primary btn-sm">Join membership — $47/mo</button>
-      </div>
     </div>
   </header>
 
@@ -35,11 +32,16 @@
       <div class="container">
         <div class="hero-badge">Local desktop app · No trading experience required</div>
         <h1>The AI agent trades your BloFin account — 24/7, on a preset prompt designed to get out-of-the-box profitability. You never place a manual order.</h1>
-        <p class="hero-sub"><strong>The AI agent (Hermes) trades your BloFin account — 24/7.</strong> Subscribe $47/month via Stripe, download once, authorize your BloFin API once — you never place a manual order; the agent executes on a preset prompt designed to get out-of-the-box profitability. You can pause or stop it anytime. Your keys stay on your PC.</p>
-        <div style="max-width:720px;margin:1rem auto;padding:1rem;background:#111;border:1px solid #333;border-radius:10px;color:#ccc;font-family:sans-serif;font-size:0.95rem;line-height:1.6;"><strong>First time here? You do not need to know crypto.</strong> The How-To tab walks you through buying USDC with your debit card, sending it to BloFin, and creating your API key — with screenshots of exactly which boxes to tick. No terminal. No coding. One guided click at a time.</div>
-<div class="hero-actions">
-          <button type="button" id="btn-subscribe-hero" class="btn-primary">Join membership — $47/month</button>
-          <a href="#how-it-works" class="btn-secondary">See the exact 5 steps</a>
+        <p class="hero-sub"><strong>You pay $19 once for the AI agent trading system package, plus a $5 Nous Portal API key.</strong> Download the app, authorize your BloFin API key once, enter your Nous Portal key — the AI agent (Hermes) trades your BloFin account autonomously, 24/7, on a preset prompt designed to get out-of-the-box profitability. You can pause or stop it anytime. Your keys stay on your PC.</p>
+        <div class="hero-download-section">
+          <div class="platform-selector" role="radiogroup" aria-label="Choose your operating system">
+            <button class="platform-btn active" data-platform="windows" role="radio" aria-checked="true">Windows</button>
+            <button class="platform-btn" data-platform="mac" role="radio" aria-checked="false">Mac</button>
+          </div>
+          <div class="download-actions">
+            <button type="button" class="btn-primary btn-lg" id="btn-download-windows">Download for Windows</button>
+            <button type="button" class="btn-primary btn-lg hidden" id="btn-download-mac">Download for Mac</button>
+          </div>
         </div>
         <p class="hero-trust">Local-first. Your API keys never leave your PC. The app trades your BloFin account — not a hosted account someone else controls.</p>
         <div class="hero-proof">
@@ -52,8 +54,8 @@
             <div class="proof-label">Per guided step</div>
           </div>
           <div class="proof-item">
-            <div class="proof-number">Cancel anytime</div>
-            <div class="proof-label">Monthly, no contract</div>
+            <div class="proof-number">24/7</div>
+            <div class="proof-label">AI auto-trading</div>
           </div>
         </div>
       </div>
@@ -107,15 +109,15 @@
           <div class="plain-english-card">
             <div class="plain-english-num">2</div>
             <div>
-              <h3>You create a BloFin API key</h3>
-              <p>An API key is a long password that lets the app place trades on your behalf without you logging in each time. The How-To tab shows the exact screen and exactly which boxes to tick.</p>
+              <h3>You create a BloFin API key and Nous Portal key</h3>
+              <p>An API key is a long password that lets the app place trades on your behalf without you logging in each time. The How-To tab shows the exact screen and exactly which boxes to tick. You also create a free Nous Portal API key ($5 credits) for the AI model calls.</p>
             </div>
           </div>
           <div class="plain-english-card">
             <div class="plain-english-num">3</div>
             <div>
-              <h3>The app installs and configures the assistant</h3>
-              <p>You click "Install Hermes". The app downloads the assistant, writes your keys into its sandboxed config folder, and registers a scheduled task on your computer (Windows Task Scheduler on Windows, launchd on macOS). You do not open a terminal window.</p>
+              <h3>You install the app</h3>
+              <p>Select your operating system above, download the one-click installer, and run it. No terminal, no Python, no PATH edits.</p>
             </div>
           </div>
           <div class="plain-english-card">
@@ -129,7 +131,7 @@
             <div class="plain-english-num">5</div>
             <div>
               <h3>You keep the kill switch</h3>
-            <p>You can hit "Stop" in the app, or close the app, or uninstall it. The bot stops within seconds. Your money never leaves BloFin — only the API key on your PC is revoked.</p>
+              <p>You can hit "Stop" in the app, or close the app, or uninstall it. The bot stops within seconds. Your money never leaves BloFin — only the API key on your PC is revoked.</p>
             </div>
           </div>
         </div>
@@ -173,129 +175,94 @@
       </div>
     </section>
 
-    
-<section id="hero" aria-label="Product overview" style="padding:3rem 1.5rem;text-align:center;background:#0b0c15;color:#fff;border-bottom:1px solid #222;">
-  <h1 style="font-size:2.4rem;margin:0 0 .6rem;letter-spacing:-.03em;">KnightTrader BloFin — an AI agent in a box</h1>
-  <p style="font-size:1.15rem;color:#ccc;max-width:680px;margin:0 auto 1.2rem;line-height:1.55;">Install once. Authorize your BloFin account once. After that, the agent trades for you — autonomously, 24/7, on a preset prompt designed to get out-of-the-box profitability. It does not access your computer beyond the app window; it does not run background services that touch other files; it does not ask for your bank, wallet, or OS password.</p>
-  <p style="font-size:1rem;color:#ff9900;font-weight:600;margin:0 auto 0.6rem;text-align:center;">$47 / month — subscribe via Stripe and the agent starts trading your account.</p>
-  <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-top:1rem;">
-    <a href="#download-section" style="padding:.7rem 1.4rem;background:#ff9900;color:#0b0c15;border-radius:6px;text-decoration:none;font-weight:600;">Download (macOS .dmg / Windows .exe)</a>
-  </div>
-  <p style="font-size:.85rem;color:#888;margin-top:.8rem;">Free to download. You supply your own BloFin API credentials and a $5 Nous Portal credit balance to activate trading.</p>
-</section>
-
-<section id="what-you-get" aria-label="What is KnightTrader BloFin" style="padding:2rem 1.5rem;text-align:center;background:#121420;color:#fff;border-top:1px solid #ff9900;">
-  <h2 style="font-size:1.3rem;margin:0 0 .4rem;">What you get — and what you don't</h2>
-  <p style="color:#aaa;font-size:.95rem;max-width:640px;margin:0 auto 1rem;line-height:1.55;">KnightTrader BloFin is an autonomous trading agent for your BloFin perpetuals account. It reads market data, applies your 10-min strategy with 10% position sizing, and executes trades while you are away. You install once; it runs 24/7. It never asks for your bank details, never runs outside this app, and uses only the BloFin API credentials you provide. The $47 / month keeps your subscription active.</p>
-  <div style="display:flex;gap:2rem;justify-content:center;flex-wrap:wrap;margin-top:1rem;">
-    <div style="text-align:center;max-width:220px;">
-      <h3 style="font-size:1rem;color:#ff9900;margin-bottom:.2rem;">AI Agent</h3>
-      <p style="font-size:.85rem;color:#ccc;">Reads ticks, applies confluence rules, executes orders — with your signing key and broker ID.</p>
-    </div>
-    <div style="text-align:center;max-width:220px;">
-      <h3 style="font-size:1rem;color:#ff9900;margin-bottom:.2rem;">One-time setup</h3>
-      <p style="font-size:.85rem;color:#ccc;">Install the .exe / .dmg, enter your BloFin passphrase + API credentials in the app, and create your Nous Portal key ($5 credits).</p>
-    </div>
-    <div style="text-align:center;max-width:220px;">
-      <h3 style="font-size:1rem;color:#ff9900;margin-bottom:.2rem;">Doesn't harm your computer</h3>
-      <p style="font-size:.85rem;color:#ccc;">No background services, no file access outside the app folder, no OS-level permissions beyond Electron.</p>
-    </div>
-  </div>
-</section>
-<section id="join-sign-in" aria-label="Subscribe & sign in" style="padding:2.5rem 1.5rem;text-align:center;background:#0b0c15;color:#fff;border-top:2px solid #ff9900;border-bottom:1px solid #222;">
-  <h2 style="font-size:1.6rem;margin:0 0 .6rem;">Subscribe — $47 / month</h2>
-  <p style="color:#ccc;margin-bottom:1rem;font-size:.95rem;">Pay via Stripe. After payment, return here to download and sign in with the same details.</p>
-  <form id="site-join-form" onsubmit="event.preventDefault(); const email=document.getElementById('join-email').value; const pwd=document.getElementById('join-password').value; if(email&&pwd){localStorage.setItem('kt_subscribed','yes');localStorage.setItem('kt_email',email);document.getElementById('join-locked').style.display='block';this.style.display='none';} else {alert('Please enter email and password');}" style="display:inline-block;text-align:left;background:#121420;padding:1.2rem;border-radius:8px;border:1px solid #333;max-width:360px;width:100%;margin:0 auto;">
-    <label for="join-email" style="display:block;color:#ccc;font-size:.85rem;margin-bottom:.25rem;">Email (remember this — you'll log in to the app with it)</label>
-    <input id="join-email" type="email" placeholder="you@email.com" required style="width:100%;padding:.55rem;margin-bottom:.6rem;border:1px solid #444;border-radius:4px;background:#0b0c15;color:#fff;" />
-    <label for="join-password" style="display:block;color:#ccc;font-size:.85rem;margin-bottom:.25rem;">Password (remember — you'll use this to log in to the app)</label>
-    <input id="join-password" type="password" placeholder="Create a password" required style="width:100%;padding:.55rem;margin-bottom:.6rem;border:1px solid #444;border-radius:4px;background:#0b0c15;color:#fff;" />
-    <button type="submit" class="btn-primary" style="width:100%;padding:.7rem;background:#ff9900;color:#0b0c15;border:none;border-radius:6px;font-weight:700;cursor:pointer;font-size:1rem;">Pay $47 / Month via Stripe → Download</button>
-  </form>
-  <div id="join-locked" style="display:none;margin-top:1.2rem;padding-top:1rem;border-top:1px solid #333;">
-    <h3 style="font-size:1.2rem;margin-bottom:.4rem;color:#ff9900;">Subscription confirmed — $47/mo active</h3>
-    <p style="font-size:.9rem;color:#ccc;margin:0 auto .6rem;max-width:500px;">Remember your email and password — you'll need them to sign in to KnightTrader BloFin after installing.</p>
-    <div style="margin-top:.6rem;">
-      
-<div id="why-subscribe" style="max-width:720px;margin:2rem auto;padding:1rem;background:#0a0a12;border:1px solid #222;border-radius:12px;font-family:sans-serif;color:#ddd;line-height:1.6;">
-  <h2 style="color:#fff;margin-top:0;font-size:1.3rem;">Skip the trial — subscribe directly</h2>
-  <p><strong>Free download</strong> = only the installer. You can install the app, read the How-To, and create
-  your API key, but the agent will not trade until your membership is active.</p>
-  <p><strong>$47 / month (Stripe)</strong> = the AI agent activates, trades your BloFin account 24/7, delivers
-  updates, and keeps your log history. No trial restrictions, no feature locks, no delay.</p>
-  <table style="width:100%;border-collapse:collapse;margin:1rem 0;font-size:0.92rem;">
-    <tr><th align="left" style="padding:0.35rem;border-bottom:2px solid #555"></th><th align="left" style="padding:0.35rem;border-bottom:2px solid #555">Free (download only)</th><th align="left" style="padding:0.35rem;border-bottom:2px solid #555">Subscribe $47/mo</th></tr>
-    <tr><td style="padding:0.35rem;border-bottom:1px solid #333">AI agent trades</td><td style="padding:0.35rem;border-bottom:1px solid #333;color:#aaa">Not active</td><td style="padding:0.35rem;border-bottom:1px solid #333;color:#4ecdc4;font-weight:bold">Active 24/7</td></tr>
-    <tr><td style="padding:0.35rem;border-bottom:1px solid #333">How-To / setup help</td><td style="padding:0.35rem;border-bottom:1px solid #333;color:#aaa">Read only</td><td style="padding:0.35rem;border-bottom:1px solid #333;color:#4ecdc4;font-weight:bold">Guided click-by-click</td></tr>
-    <tr><td style="padding:0.35rem;border-bottom:1px solid #333">App updates</td><td style="padding:0.35rem;border-bottom:1px solid #333;color:#aaa">None</td><td style="padding:0.35rem;border-bottom:1px solid #333;color:#4ecdc4;font-weight:bold">Free updates</td></tr>
-    <tr><td style="padding:0.35rem;border-bottom:1px solid #333">Your account / credentials</td><td style="padding:0.35rem;border-bottom:1px solid #333;color:#aaa">Local only</td><td style="padding:0.35vem;border-bottom:1px solid #333;color:#4ecdc4;font-weight:bold">Remembered for re-login</td></tr>
-    <tr><td style="padding:0.35rem;border-bottom:1px solid #333">Cancel anytime</td><td style="padding:0.35rem;border-bottom:1px solid #333;color:#aaa">N/A</td><td style="padding:0.35rem;border-bottom:1px solid #333;color:#4ecdc4;font-weight:bold">Stripe dashboard</td></tr>
-  </table>
-  <p style="font-size:0.85rem;color:#999;margin-top:0.5rem;">The free download proves the software; the $47/mo subscription activates it. You don't need a trial — you need the agent running.</p>
-</div>
-<a href="https://github.com/mknight2690-sys/KnightTrader-BloFin/releases/download/v1.1.20/KnightTrader-Blofin-Setup-1.1.20.exe" class="btn-primary" style="display:inline-block;padding:.6rem 1.2rem;background:#ff9900;color:#0b0c15;text-decoration:none;border-radius:6px;font-weight:700;margin:.25rem;">Download Windows .exe</a>
-      <a href="https://github.com/mknight2690-sys/KnightTrader-BloFin/releases/download/v1.1.20/KnightTrader-Blofin-1.1.20-arm64.dmg" class="btn-primary" style="display:inline-block;padding:.6rem 1.2rem;background:#ff9900;color:#0b0c15;text-decoration:none;border-radius:6px;font-weight:700;margin:.25rem;">Download macOS .dmg</a>
-    </div>
-    <p style="font-size:.75rem;color:#777;margin-top:.6rem;">After install: open app → How-To tab → create Nous Portal API key ($5 credits) → start trading.</p>
-  </div>
-</section>
-
-<section id="checkout-confirm" aria-label="After Stripe payment" style="padding:1.5rem;text-align:center;background:#111; color:#fff; border-top:2px solid #ff9900;">
-  <h2>Subscription confirmed — $47/mo active</h2>
-  <p>Thank you. After Stripe completes your payment, return to this page to download.</p>
-  <p><strong>Download KnightTrader BloFin 1.1.20:</strong></p>
-  
-<div id="why-subscribe" style="max-width:720px;margin:2rem auto;padding:1rem;background:#0a0a12;border:1px solid #222;border-radius:12px;font-family:sans-serif;color:#ddd;line-height:1.6;">
-  <h2 style="color:#fff;margin-top:0;font-size:1.3rem;">Skip the trial — subscribe directly</h2>
-  <p><strong>Free download</strong> = only the installer. You can install the app, read the How-To, and create
-  your API key, but the agent will not trade until your membership is active.</p>
-  <p><strong>$47 / month (Stripe)</strong> = the AI agent activates, trades your BloFin account 24/7, delivers
-  updates, and keeps your log history. No trial restrictions, no feature locks, no delay.</p>
-  <table style="width:100%;border-collapse:collapse;margin:1rem 0;font-size:0.92rem;">
-    <tr><th align="left" style="padding:0.35rem;border-bottom:2px solid #555"></th><th align="left" style="padding:0.35rem;border-bottom:2px solid #555">Free (download only)</th><th align="left" style="padding:0.35rem;border-bottom:2px solid #555">Subscribe $47/mo</th></tr>
-    <tr><td style="padding:0.35rem;border-bottom:1px solid #333">AI agent trades</td><td style="padding:0.35rem;border-bottom:1px solid #333;color:#aaa">Not active</td><td style="padding:0.35rem;border-bottom:1px solid #333;color:#4ecdc4;font-weight:bold">Active 24/7</td></tr>
-    <tr><td style="padding:0.35rem;border-bottom:1px solid #333">How-To / setup help</td><td style="padding:0.35rem;border-bottom:1px solid #333;color:#aaa">Read only</td><td style="padding:0.35rem;border-bottom:1px solid #333;color:#4ecdc4;font-weight:bold">Guided click-by-click</td></tr>
-    <tr><td style="padding:0.35rem;border-bottom:1px solid #333">App updates</td><td style="padding:0.35rem;border-bottom:1px solid #333;color:#aaa">None</td><td style="padding:0.35rem;border-bottom:1px solid #333;color:#4ecdc4;font-weight:bold">Free updates</td></tr>
-    <tr><td style="padding:0.35rem;border-bottom:1px solid #333">Your account / credentials</td><td style="padding:0.35rem;border-bottom:1px solid #333;color:#aaa">Local only</td><td style="padding:0.35vem;border-bottom:1px solid #333;color:#4ecdc4;font-weight:bold">Remembered for re-login</td></tr>
-    <tr><td style="padding:0.35rem;border-bottom:1px solid #333">Cancel anytime</td><td style="padding:0.35rem;border-bottom:1px solid #333;color:#aaa">N/A</td><td style="padding:0.35rem;border-bottom:1px solid #333;color:#4ecdc4;font-weight:bold">Stripe dashboard</td></tr>
-  </table>
-  <p style="font-size:0.85rem;color:#999;margin-top:0.5rem;">The free download proves the software; the $47/mo subscription activates it. You don't need a trial — you need the agent running.</p>
-</div>
-<a href="https://github.com/mknight2690-sys/KnightTrader-BloFin/releases/download/v1.1.20/KnightTrader-Blofin-Setup-1.1.20.exe" class="btn-primary" style="display:inline-block;padding:.6rem 1rem;background:#ff9900;color:#0b0c15;text-decoration:none;border-radius:6px;font-weight:700;margin:.3rem;">Windows .exe</a>
-  <a href="https://github.com/mknight2690-sys/KnightTrader-BloFin/releases/download/v1.1.20/KnightTrader-Blofin-1.1.20-arm64.dmg" class="btn-primary" style="display:inline-block;padding:.6rem 1rem;background:#ff9900;color:#0b0c15;text-decoration:none;border-radius:6px;font-weight:700;margin:.3rem;">macOS .dmg</a>
-</section>
-
-<section id="how-it-works" class="section">
+    <section id="what-you-get" class="section">
       <div class="container">
-        <h2>What happens after you click "Join"</h2>
-        <p class="section-lead">You are not buying access to a cloud server. You are buying a guided path from "I have never used a bot" to "the bot is running on my computer" — five steps, about 45 minutes the first time.</p>
+        <h2>What you get — for $19 flat</h2>
+        <p class="section-lead">One payment of $19 gets you the full AI agent trading system package. Plus you need $5 on a Nous Portal API key (separate, pay Nous directly). That's it — no subscriptions, no recurring fees.</p>
+        <div class="value-grid">
+          <div class="value-card">
+            <div class="value-title">AI Agent Trading System</div>
+            <p>The full KnightTrader BloFin desktop app with Hermes trading assistant pre-configured to run on your BloFin perpetual futures account.</p>
+          </div>
+          <div class="value-card">
+            <div class="value-title">One-click installer</div>
+            <p>Select your OS below and download the signed installer — .exe for Windows, .dmg for macOS. Includes auto-configured Python, Hermes sandbox, and scheduled task setup.</p>
+          </div>
+          <div class="value-card">
+            <div class="value-title">Beginner How-To tab</div>
+            <p>Inside the app, the first tab walks you through buying USDC, sending it to BloFin, creating your API key, getting a Nous Portal key ($5 credits), and disabling Sleep on Windows. No external courses.</p>
+          </div>
+          <div class="value-card">
+            <div class="value-title">Local dashboard</div>
+            <p>Every assistant decision is written to a log file on your PC. The Trading tab shows your open positions, recent activity, and account equity in real time.</p>
+          </div>
+          <div class="value-card">
+            <div class="value-title">Free app updates</div>
+            <p>You get every new feature and bug fix. The app updates itself.</p>
+          </div>
+          <div class="value-card">
+            <div class="value-title">Local-first privacy</div>
+            <p>The app, the assistant, and your API keys live on your PC. Nothing is uploaded to anyone. Your Nous Portal key is local; your BloFin API keys are local.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="download" class="section section-accent">
+      <div class="container">
+        <h2>Select your OS — download the installer</h2>
+        <p class="section-lead">The one-click installer sets everything up for you. Just $19 one-time payment for the AI agent trading system package, plus $5 Nous Portal API key (paid separately to Nous).</p>
+        <div class="download-card">
+          <div class="download-card-header">
+            <div class="download-card-platform" id="download-platform-name">Windows 11 or later</div>
+            <div class="download-card-version" id="download-version">Latest release: <strong id="download-latest">v1.2.1</strong></div>
+          </div>
+          <div class="platform-selector" role="radiogroup" aria-label="Choose your operating system">
+            <button class="platform-btn active" data-platform="windows" role="radio" aria-checked="true">Windows</button>
+            <button class="platform-btn" data-platform="mac" role="radio" aria-checked="false">Mac</button>
+          </div>
+          <div class="download-actions">
+            <button type="button" class="btn-primary btn-lg" id="btn-download-windows">Download for Windows</button>
+            <button type="button" class="btn-primary btn-lg hidden" id="btn-download-mac">Download for Mac</button>
+          </div>
+          <p class="download-note" id="download-note">Windows: download the KT BloFin installer .exe, then double-click to install.</p>
+          <p class="download-fallback"><a id="download-release-link" href="https://github.com/mknight2690-sys/KnightTrader-BloFin/releases" rel="noopener noreferrer">Browse all releases on GitHub ↗</a></p>
+        </div>
+        <p class="os-notice">Requires Windows 11 or later, or macOS 11 (Big Sur) or later on Intel or Apple Silicon. The Mac build is shipped on every release that contains a macOS change.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2>What happens after you download</h2>
+        <p class="section-lead">You are installing a local desktop app that runs an AI trading assistant on your computer — five steps, about 30-45 minutes the first time.</p>
         <ol class="steps">
           <li>
             <span class="step-number">1</span>
             <div>
-              <strong>Pay $47 with a debit card on Stripe</strong>
-              <p class="step-detail">Stripe checkout, no account on our side. Your receipt and membership email go to whatever address you type. That email is what unlocks downloads below.</p>
+              <strong>Download and run the installer</strong>
+              <p class="step-detail">Select your OS above, download the one-click installer, and run it. On Windows, double-click the .exe and accept the prompt. On macOS, open the .dmg and drag the app into Applications.</p>
             </div>
           </li>
           <li>
             <span class="step-number">2</span>
             <div>
-              <strong>Download the installer for your computer</strong>
-              <p class="step-detail">Windows users double-click the <code>.exe</code>, accept the install prompt, and you are done. Mac users open the <code>.dmg</code> and drag the app into Applications. No terminal, no Python, no PATH edits.</p>
+              <strong>Open the How-To tab</strong>
+              <p class="step-detail">The first tab inside the app. It walks you through buying USDC on Coinbase with your debit card, sending it to BloFin, creating the BloFin API key, getting a Nous Portal API key ($5 credits), and keeping your computer awake. Click by click.</p>
             </div>
           </li>
           <li>
             <span class="step-number">3</span>
             <div>
-              <strong>Open the How-To tab</strong>
-              <p class="step-detail">The first tab inside the app. It walks you through buying USDC on Coinbase with your debit card, sending it to BloFin, creating the BloFin API key, getting a free Nous Portal key, and keeping your computer awake. Click by click.</p>
+              <strong>Enter your keys</strong>
+              <p class="step-detail">Paste your BloFin API credentials into the app (they stay local). Then enter your Nous Portal API key — you need $5 credits from Nous Portal for the AI model calls.</p>
             </div>
           </li>
           <li>
             <span class="step-number">4</span>
             <div>
               <strong>One-click install the assistant</strong>
-              <p class="step-detail">Click "Install Hermes" in the app. The app downloads the assistant, writes your keys into its local sandbox, and registers a scheduled task (Windows Task Scheduler on Windows, launchd on macOS). You click. The app configures.</p>
+              <p class="step-detail">Click "Install Hermes" in the app. The app downloads the assistant, writes your keys into its local sandbox, and registers a scheduled task (Windows Task Scheduler on Windows, launchd on macOS). You click. The app configures everything.</p>
             </div>
           </li>
           <li>
@@ -326,16 +293,16 @@
             <p>Every assistant decision is written to a log file on your PC. The Trading tab shows your open positions, recent activity, and account equity in real time.</p>
           </div>
           <div class="value-card">
-            <div class="value-title">Membership sync</div>
-            <p>The app signs you in with the same email you used on Stripe. After your first install, the app remembers you and re-checks your membership on launch.</p>
+            <div class="value-title">One-time payment — $19 flat</div>
+            <p>You paid $19 once. No recurring fees, no subscription, no membership check. The app works forever until you uninstall it.</p>
           </div>
           <div class="value-card">
             <div class="value-title">Free app updates</div>
-            <p>You get every new feature and bug fix as long as your $47/month membership is active. The app updates itself.</p>
+            <p>You get every new feature and bug fix with no extra charge. The app updates itself.</p>
           </div>
           <div class="value-card">
             <div class="value-title">Local-first privacy</div>
-            <p>The app, the assistant, and your API keys live on your PC. Nothing is uploaded to us. The membership check is the only network call.</p>
+            <p>The app, the assistant, and your API keys live on your PC. Nothing is uploaded to us. The only network calls go from the AI model (via your Nous Portal key) and your BloFin API.</p>
           </div>
         </div>
       </div>
@@ -367,121 +334,32 @@
             <div class="cost-note">API changes, market shifts, security patches, monitoring</div>
           </div>
         </div>
-        <p class="cost-cta">That is real money for a system that still needs you to run it, fix it, and watch it. KnightTrader BloFin is the same outcome for the cost of one month of maintenance on a professional bot, with a beginner-friendly setup that the freelancers do not provide.</p>
+        <p class="cost-cta">That is real money for a system that still needs you to run it, fix it, and watch it. KnightTrader BloFin is the same outcome for just $19 — a one-time payment for an AI agent trading system package that gets you from zero to autonomous trading.</p>
       </div>
     </section>
 
     <section id="pricing" class="section section-accent">
       <div class="container">
-        <h2>One membership. Everything included.</h2>
-        <p class="section-lead">$47/month. Cancel from your Stripe dashboard at any time. Membership unlocks the installer and free updates.</p>
+        <h2>One payment. Everything included.</h2>
+        <p class="section-lead">$19 one-time payment. That's it — no subscriptions, no recurring fees. Membership unlocks the installer and free updates, and the $5 Nous Portal key is paid separately to Nous.</p>
         <div class="pricing-card">
           <div class="pricing-header">
-            <div class="pricing-price">$47<span>/month</span></div>
-            <div class="pricing-label">USD, billed monthly through Stripe</div>
+            <div class="pricing-price">$19<span>one-time</span></div>
+            <div class="pricing-label">USD, flat one-time payment (plus $5 Nous Portal API key)</div>
           </div>
           <ul class="pricing-list">
             <li>Windows and macOS desktop app with guided setup</li>
             <li>How-To tab that walks a total beginner from $0 to a trading assistant running</li>
             <li>Local credential storage, sandboxed Hermes install, dashboard and logs</li>
-            <li>Free app updates as long as your membership is active</li>
-            <li>Membership login that survives reinstalls</li>
+            <li>Free app updates forever — no extra charge</li>
+            <li>No membership login, no subscription check — the app just works</li>
             <li>Email support for setup questions</li>
           </ul>
-          <div class="pricing-actions">
-            <button type="button" id="btn-subscribe-pricing" class="btn-primary btn-lg">Join membership — $47/month</button>
-            <p class="pricing-note">Cancel anytime from your Stripe dashboard. You keep using the app until the end of the billing period you already paid for.</p>
-          </div>
           <div class="pricing-guarantee">
-            <div class="guarantee-title">Honest about what happens when you stop paying</div>
-            <p>The app checks your membership each time it starts. If your subscription lapses, the app stops opening the trading tabs and shows a renewal screen. Your money is unaffected — it is still on BloFin, untouched. Resubscribe any time and pick up where you left off.</p>
+            <div class="guarantee-title">What you need to know</div>
+            <p>This is a local desktop app, not a cloud service. After your $19 payment you get the installer, the How-To tab, the dashboard, and all future updates. The app does not call home or check for an active subscription. Your only other cost is $5 for a Nous Portal API key (paid to Nous directly) for the AI model calls the agent needs to make decisions.</p>
           </div>
         </div>
-      </div>
-    </section>
-
-    <section id="download" class="section">
-      <div class="container">
-        <h2>Get the installer</h2>
-        <p class="section-lead">After you subscribe on Stripe, sign in below with the same email and password to unlock the installer. Want to look at the binaries first? Use the GitHub releases page.</p>
-        <div class="download-card">
-          <div class="download-card-header">
-            <div class="download-card-platform" id="download-platform-name">Windows 11 or later</div>
-            <div class="download-card-version" id="download-version">Latest release: <strong id="download-latest">checking…</strong></div>
-          </div>
-          <div class="platform-selector" role="tablist" aria-label="Choose your operating system">
-            <button class="platform-btn active" data-platform="windows" role="tab" aria-selected="true">Windows</button>
-            <button class="platform-btn" data-platform="mac" role="tab" aria-selected="false">Mac</button>
-          </div>
-        <div class="download-actions" style="justify-content: center; margin-top: 14px;">
-          <button type="button" class="btn-primary" id="btn-download-windows">Download for Windows</button>
-          <button type="button" class="btn-primary hidden" id="btn-download-mac">Download for Mac</button>
-          <p class="download-note" id="download-note">Active membership required to download.</p>
-          <p class="download-fallback"><a id="download-release-link" href="https://github.com/mknight2690-sys/KnightTrader-BloFin/releases" rel="noopener noreferrer">Browse all releases on GitHub ↗</a></p>
-        </div>
-        <div class="membership-gate" style="margin-top: 18px;">
-          <div class="membership-card" style="margin: 0 auto;">
-            <h3>Sign in to unlock downloads</h3>
-            <p>Enter the same email and password you used on Stripe. After Stripe processes your payment, allow up to a few minutes for membership to sync.</p>
-            <form id="form-site-login" class="site-auth-form" novalidate>
-              <label>
-                <span>Email</span>
-                <input type="email" id="site-email" placeholder="you@example.com" autocomplete="email" required />
-              </label>
-              <label>
-                <span>Password</span>
-                <input type="password" id="site-password" placeholder="••••••••" autocomplete="current-password" required />
-              </label>
-              <div id="site-login-error" class="site-auth-error" role="alert" aria-live="polite"></div>
-              <button type="submit" id="btn-site-login" class="btn-primary">Sign in and download</button>
-              <button type="button" id="btn-site-forgot" class="link-btn">Forgot password?</button>
-      <script>
-        document.getElementById('btn-site-login').addEventListener('click', function() {
-          var e = document.getElementById('si-email');
-          var p = document.getElementById('si-password');
-          if (e && p && e.value.trim() && p.value.trim()) {
-            localStorage.setItem('kt_subscribed', 'yes');
-            localStorage.setItem('kt_email', e.value.trim());
-            document.getElementById('download-section').style.display = 'block';
-            this.closest('form').innerHTML = '<h3>Signed in — download ready</h3><p>Click below to install KnightTrader BloFin 1.1.20.</p>
-<div id="why-subscribe" style="max-width:720px;margin:2rem auto;padding:1rem;background:#0a0a12;border:1px solid #222;border-radius:12px;font-family:sans-serif;color:#ddd;line-height:1.6;">
-  <h2 style="color:#fff;margin-top:0;font-size:1.3rem;">Skip the trial — subscribe directly</h2>
-  <p><strong>Free download</strong> = only the installer. You can install the app, read the How-To, and create
-  your API key, but the agent will not trade until your membership is active.</p>
-  <p><strong>$47 / month (Stripe)</strong> = the AI agent activates, trades your BloFin account 24/7, delivers
-  updates, and keeps your log history. No trial restrictions, no feature locks, no delay.</p>
-  <table style="width:100%;border-collapse:collapse;margin:1rem 0;font-size:0.92rem;">
-    <tr><th align="left" style="padding:0.35rem;border-bottom:2px solid #555"></th><th align="left" style="padding:0.35rem;border-bottom:2px solid #555">Free (download only)</th><th align="left" style="padding:0.35rem;border-bottom:2px solid #555">Subscribe $47/mo</th></tr>
-    <tr><td style="padding:0.35rem;border-bottom:1px solid #333">AI agent trades</td><td style="padding:0.35rem;border-bottom:1px solid #333;color:#aaa">Not active</td><td style="padding:0.35rem;border-bottom:1px solid #333;color:#4ecdc4;font-weight:bold">Active 24/7</td></tr>
-    <tr><td style="padding:0.35rem;border-bottom:1px solid #333">How-To / setup help</td><td style="padding:0.35rem;border-bottom:1px solid #333;color:#aaa">Read only</td><td style="padding:0.35rem;border-bottom:1px solid #333;color:#4ecdc4;font-weight:bold">Guided click-by-click</td></tr>
-    <tr><td style="padding:0.35rem;border-bottom:1px solid #333">App updates</td><td style="padding:0.35rem;border-bottom:1px solid #333;color:#aaa">None</td><td style="padding:0.35rem;border-bottom:1px solid #333;color:#4ecdc4;font-weight:bold">Free updates</td></tr>
-    <tr><td style="padding:0.35rem;border-bottom:1px solid #333">Your account / credentials</td><td style="padding:0.35rem;border-bottom:1px solid #333;color:#aaa">Local only</td><td style="padding:0.35vem;border-bottom:1px solid #333;color:#4ecdc4;font-weight:bold">Remembered for re-login</td></tr>
-    <tr><td style="padding:0.35rem;border-bottom:1px solid #333">Cancel anytime</td><td style="padding:0.35rem;border-bottom:1px solid #333;color:#aaa">N/A</td><td style="padding:0.35rem;border-bottom:1px solid #333;color:#4ecdc4;font-weight:bold">Stripe dashboard</td></tr>
-  </table>
-  <p style="font-size:0.85rem;color:#999;margin-top:0.5rem;">The free download proves the software; the $47/mo subscription activates it. You don't need a trial — you need the agent running.</p>
-</div>
-<a href="https://github.com/mknight2690-sys/KnightTrader-BloFin/releases/download/v1.1.20/KnightTrader-Blofin-Setup-1.1.20.exe" class="btn-primary">Download Windows .exe</a><a href="https://github.com/mknight2690-sys/KnightTrader-BloFin/releases/download/v1.1.20/KnightTrader-Blofin-1.1.20-arm64.dmg" class="btn-primary">Download macOS .dmg</a>';
-          }
-        });
-      </script>
-            </form>
-            <form id="form-site-forgot" class="site-auth-form hidden" novalidate>
-              <label>
-                <span>Account email</span>
-                <input type="email" id="site-forgot-email" placeholder="you@example.com" autocomplete="email" required />
-              </label>
-              <div id="site-forgot-error" class="site-auth-error" role="alert" aria-live="polite"></div>
-              <div id="site-forgot-success" class="site-auth-success" role="status" aria-live="polite"></div>
-              <button type="submit" id="btn-site-forgot-send" class="btn-primary">Send reset link</button>
-              <button type="button" id="btn-site-forgot-back" class="link-btn">Back to sign in</button>
-            </form>
-            <div class="membership-footer">
-              <span>New here? </span>
-              <button type="button" id="btn-start-checkout" class="link-btn">Join membership — $47/mo</button>
-            </div>
-          </div>
-        </div>
-        <p class="os-notice" style="text-align: center; margin-top: 14px;">Requires Windows 11 or later, or macOS 11 (Big Sur) or later on Intel or Apple Silicon. The Mac build is shipped on every release that contains a macOS change. Use the GitHub releases page if you need an older Mac build.</p>
       </div>
     </section>
 
@@ -491,7 +369,7 @@
         <div class="faq">
           <details>
             <summary>Does this work on a Mac?</summary>
-            <p>Yes. KnightTrader BloFin ships a signed <code>.dmg</code> for macOS 11 (Big Sur) and newer on both Intel and Apple&nbsp;Silicon Macs. Open the <code>.dmg</code>, drag the app into Applications, and the How-To tab handles the rest. The only feature that is Windows-only inside the app is the ProtonVPN helper — Mac users can still run ProtonVPN manually, and the How-To tab shows how.</p>
+            <p>Yes. KnightTrader BloFin ships a signed <code>.dmg</code> for macOS 11 (Big Sur) and newer on both Intel and Apple&nbsp;Silicon Macs. Open the <code>.dmg</code>, drag the app into Applications, and the How-To tab handles the rest. The ProtonVPN helper inside the app is Windows-only — Mac users can still run ProtonVPN manually, and the How-To tab shows how.</p>
           </details>
           <details>
             <summary>I have never bought crypto before. Can I still use this?</summary>
@@ -511,31 +389,19 @@
           </details>
           <details>
             <summary>Where do my API keys go?</summary>
-            <p>They stay on your machine. The app stores them in your local user profile and writes them into the Hermes sandbox folder when you click Install. They are never sent to us or to anyone else.</p>
+            <p>They stay on your machine. The app stores them in your local user profile and writes them into the Hermes sandbox folder when you click Install. They are never sent to anyone or uploaded anywhere.</p>
           </details>
           <details>
-            <summary>What if I get stuck?</summary>
-            <p>The How-To tab inside the app covers every step. For account or billing issues, email <a href="mailto:support@knighttrader.app">support@knighttrader.app</a> (replace with your real address before sending).</p>
+            <summary>Is this a subscription or one-time payment?</summary>
+            <p>It is a $19 one-time payment for the AI agent trading system package. Plus you need $5 on a Nous Portal API key (paid separately to Nous). No subscriptions, no recurring fees — you own the software forever.</p>
           </details>
           <details>
-            <summary>Is my money ever in your hands?</summary>
-            <p>No. KnightTrader BloFin does not custody any money. Your USDC sits in your own BloFin account. The app only holds API keys — and an API key can be revoked from BloFin at any time, which immediately cuts off the bot.</p>
+            <summary>How do I download the app?</summary>
+            <p>Select your operating system (Windows or Mac) using the OS selector on the download section above. Click the download button for your OS, and the one-click installer will start downloading. Run the installer and follow the in-app How-To tab.</p>
           </details>
           <details>
-            <summary>Is this a subscription or hosted service?</summary>
-            <p>It is a local app you install on your own computer. The $47/month Stripe subscription unlocks the installer, the membership check, and free updates. There is no cloud server running your trading account on our side.</p>
-          </details>
-          <details>
-            <summary>Why does it cost $47/month?</summary>
-            <p>A custom trading bot built by a freelancer or studio costs $5,000–$150,000 plus 15–20%/year for maintenance. $47/month covers the membership, the server time the membership check uses, ongoing fixes, and the time it takes to support a beginner through their first setup.</p>
-          </details>
-          <details>
-            <summary>What happens if I cancel?</summary>
-            <p>Cancel from your Stripe dashboard. You keep using the app until the end of the billing period you already paid for. After that, the app opens to a renewal screen. Your funds on BloFin are never touched — they remain yours.</p>
-          </details>
-          <details>
-            <summary>What happens if my subscription payment fails?</summary>
-            <p>The app shows a renewal banner and stops opening the Trading and Hermes tabs until you fix the payment. Your funds on BloFin are still yours. Update the card in your Stripe dashboard and the app resumes within minutes.</p>
+            <summary>What happens if I need an older version?</summary>
+            <p>Use the <a href="https://github.com/mknight2690-sys/KnightTrader-BloFin/releases" target="_blank" rel="noopener">GitHub releases page</a> to browse and download any previous version.</p>
           </details>
           <details id="faq-risk">
             <summary>Risk: Can I lose money?</summary>
@@ -549,7 +415,7 @@
   <footer class="site-footer">
     <div class="container">
       <p><strong>KnightTrader BloFin</strong> is a local desktop trading assistant. It is not a brokerage, not a custodian, and not financial advice. Cryptocurrency perpetual futures are leveraged products — you can lose some, most, or all of the money you deposit on BloFin. By downloading and using this app, you accept full responsibility for the trades the assistant places on your behalf.</p>
-      <p class="footer-meta">KnightTrader BloFin — local-first trading assistant. Membership via Stripe. <a href="https://github.com/mknight2690-sys/KnightTrader-BloFin">Source on GitHub</a>.</p>
+      <p class="footer-meta">KnightTrader BloFin — local-first trading assistant. One-time payment of $19 + $5 Nous Portal API key. <a href="https://github.com/mknight2690-sys/KnightTrader-BloFin">Source on GitHub</a>.</p>
     </div>
   </footer>
 
