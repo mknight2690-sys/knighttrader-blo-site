@@ -3,12 +3,12 @@
   const repo = 'KnightTrader-BloFin';
   const releaseApiUrl = `https://api.github.com/repos/${owner}/${repo}/releases/latest`;
   const releaseWebBase = `https://github.com/${owner}/${repo}/releases`;
-  // Fallback URLs point at the latest *published* release (v1.2.1).
-  // These are overwritten at runtime when the GitHub API responds
-  // successfully — they are only here for offline / API-blocked cases.
-  const FALLBACK_TAG = 'v1.2.1';
-  const windowsUrl = `https://github.com/${owner}/${repo}/releases/download/${FALLBACK_TAG}/KnightTrader-Blofin-Setup-${FALLBACK_TAG.replace(/^v/, '')}.exe`;
-  const macUrl = `https://github.com/${owner}/${repo}/releases/download/${FALLBACK_TAG}/KnightTrader-Blofin-1.2.1-arm64.dmg`;
+
+  // Fallback URLs point at v1.2.2 - these will be updated dynamically
+  const FALLBACK_TAG = 'v1.2.2';
+  const ver = FALLBACK_TAG.replace(/^v/, '');
+  let windowsUrl = `https://github.com/${owner}/${repo}/releases/download/${FALLBACK_TAG}/KnightTrader-Blofin-Setup-${ver}.exe`;
+  let macUrl = `https://github.com/${owner}/${repo}/releases/download/${FALLBACK_TAG}/KnightTrader-Blofin-${ver}-arm64.dmg`;
 
   const btnWindows = document.getElementById('btn-download-windows');
   const btnMac = document.getElementById('btn-download-mac');
@@ -36,21 +36,29 @@
       btn.setAttribute('aria-checked', String(active));
       btn.setAttribute('aria-selected', String(active));
     });
+
+    // Update button text based on selection
     if (btnWindows) {
       btnWindows.classList.toggle('hidden', isMac);
+      btnWindows.textContent = isMac ? '' : 'Download Windows Installer';
     }
     if (btnMac) {
       btnMac.classList.toggle('hidden', !isMac);
+      btnMac.textContent = isMac ? 'Download macOS Installer' : '';
     }
+
     if (downloadNote) {
       if (isMac) {
-        downloadNote.textContent = 'macOS: download the KT BloFin .dmg, then drag the app into Applications.';
+        downloadNote.textContent = 'macOS: Download the .dmg file, then drag the app into your Applications folder.';
       } else {
-        downloadNote.textContent = 'Windows: download the KT BloFin installer .exe, then double-click to install.';
+        downloadNote.textContent = 'Windows: Download the .exe installer and double-click to run.';
       }
     }
     if (downloadPlatformName) {
       downloadPlatformName.textContent = isMac ? 'macOS 11 (Big Sur) or later' : 'Windows 11 or later';
+    }
+    if (downloadLatest) {
+      downloadLatest.textContent = FALLBACK_TAG;
     }
   }
 
@@ -69,9 +77,37 @@
 
   bindDownloads();
 
-  // Set initial platform label
-  if (downloadLatest) {
-    downloadLatest.textContent = FALLBACK_TAG;
+  // Fetch latest release to get actual URLs
+  async function updateDownloadLinks() {
+    try {
+      const response = await fetch(releaseApiUrl);
+      if (response.ok) {
+        const release = await response.json();
+        const assets = release.assets || [];
+
+        // Find Windows installer
+        const windowsAsset = assets.find(asset =>
+          asset.name.includes('Setup') && asset.name.endsWith('.exe')
+        );
+        if (windowsAsset?.browser_download_url) {
+          windowsUrl = windowsAsset.browser_download_url;
+        }
+
+        // Find macOS installer
+        const macAsset = assets.find(asset =>
+          asset.name.endsWith('.dmg') && !asset.name.includes('blockmap')
+        );
+        if (macAsset?.browser_download_url) {
+          macUrl = macAsset.browser_download_url;
+        }
+      }
+    } catch (error) {
+      console.log('Could not fetch latest release, using fallback URLs');
+    }
   }
-  selectPlatform('windows');
+
+  // Initialize
+  updateDownloadLinks().then(() => {
+    selectPlatform('windows');
+  });
 })();
