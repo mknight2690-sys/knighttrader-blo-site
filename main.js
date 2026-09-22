@@ -2,55 +2,54 @@
   const owner = 'mknight2690-sys';
   const repo = 'KnightTrader-BloFin';
   const releaseApiUrl = `https://api.github.com/repos/${owner}/${repo}/releases/latest`;
-  const releaseWebBase = `https://github.com/${owner}/${repo}/releases`;
-
+  // v1.2.2 URLs - will be updated dynamically by GitHub API
   const FALLBACK_TAG = 'v1.2.2';
   const ver = FALLBACK_TAG.replace(/^v/, '');
-  let windowsUrl = `https://github.com/${owner}/${repo}/releases/download/${FALLBACK_TAG}/KnightTrader-Blofin-Setup-${ver}.exe`;
-  let macUrl = `https://github.com/${owner}/${repo}/releases/download/${FALLBACK_TAG}/KnightTrader-Blofin-${ver}-arm64.dmg`;
+  let windowsUrl = `https://github.com/${owner}/${repo}/releases/download/v1.2.2/KnightTrader-Blofin-Setup-1.2.2.exe`;
+  let macUrl = `https://github.com/${owner}/${repo}/releases/download/v1.2.2/KnightTrader-Blofin-1.2.2-arm64.dmg`;
 
+  // Get ALL button instances (both hero section and bottom download card)
   const platformButtons = document.querySelectorAll('.platform-btn');
   const btnWindowsList = document.querySelectorAll('.btn-download-windows');
   const btnMacList = document.querySelectorAll('.btn-download-mac');
+
+  // Get other UI elements
   const downloadNote = document.getElementById('download-note');
   const downloadLatest = document.getElementById('download-latest');
   const downloadPlatformName = document.getElementById('download-platform-name');
 
+  // Trigger download by creating and clicking an anchor tag
   function triggerDownload(url) {
     const a = document.createElement('a');
     a.href = url;
     a.download = '';
-    a.style.display = 'none';
-    a.rel = 'noopener noreferrer';
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
   }
 
-  let activePlatform = 'windows';
-
+  // Select platform and update ALL button instances
   function selectPlatform(key) {
-    activePlatform = key;
     const isMac = key === 'mac';
+
+    // Update tab buttons
     platformButtons.forEach((btn) => {
-      const active = btn.dataset.platform === key;
-      btn.classList.toggle('active', active);
-      btn.setAttribute('aria-checked', String(active));
-      btn.setAttribute('aria-selected', String(active));
+      btn.classList.toggle('active', btn.dataset.platform === key);
     });
 
-    // Update ALL Windows download buttons (hero section + download card)
+    // Update ALL Windows buttons (both hero + bottom)
     btnWindowsList.forEach((btn) => {
       btn.classList.toggle('hidden', isMac);
       btn.textContent = isMac ? '' : 'Download Windows Installer';
     });
 
-    // Update ALL Mac download buttons (hero section + download card)
+    // Update ALL Mac buttons (both hero + bottom)
     btnMacList.forEach((btn) => {
       btn.classList.toggle('hidden', !isMac);
       btn.textContent = isMac ? 'Download macOS Installer' : '';
     });
 
+    // Update note text
     if (downloadNote) {
       downloadNote.textContent = isMac
         ? 'macOS: Download the .dmg file, then drag the app into your Applications folder.'
@@ -64,10 +63,7 @@
     }
   }
 
-  platformButtons.forEach((btn) => {
-    btn.addEventListener('click', () => selectPlatform(btn.dataset.platform));
-  });
-
+  // Attach click handlers to ALL button instances
   function bindDownloads() {
     btnWindowsList.forEach((btn) => {
       btn.onclick = () => triggerDownload(windowsUrl);
@@ -77,23 +73,31 @@
     });
   }
 
-  bindDownloads();
-
-  // Initialize: fetch latest release, then set initial platform
-  (async () => {
+  // Fetch latest release from GitHub API to get correct asset URLs
+  async function updateDownloadLinks() {
     try {
       const response = await fetch(releaseApiUrl);
       if (response.ok) {
         const release = await response.json();
         const assets = release.assets || [];
-        const win = assets.find(a => a.name.includes('Setup') && a.name.endsWith('.exe'));
-        const mac = assets.find(a => a.name.endsWith('.dmg') && !a.name.includes('blockmap'));
-        if (win?.browser_download_url) windowsUrl = win.browser_download_url;
-        if (mac?.browser_download_url) macUrl = mac.browser_download_url;
+
+        const winAsset = assets.find(a => a.name.includes('Setup') && a.name.endsWith('.exe'));
+        if (winAsset?.browser_download_url) {
+          windowsUrl = winAsset.browser_download_url;
+        }
+
+        const macAsset = assets.find(a => a.name.endsWith('.dmg') && !a.name.includes('blockmap'));
+        if (macAsset?.browser_download_url) {
+          macUrl = macAsset.browser_download_url;
+        }
       }
     } catch {
-      // fallback to hardcoded v1.2.2 URLs
+      console.log('Using fallback v1.2.2 URLs');
     }
     selectPlatform('windows');
-  })();
+  }
+
+  // Initialize
+  updateDownloadLinks();
+  bindDownloads();
 })();
