@@ -1,11 +1,11 @@
-(() => {
+﻿(() => {
   const owner = 'mknight2690-sys';
   const repo = 'KnightTrader-BloFin';
   const releaseApiUrl = `https://api.github.com/repos/${owner}/${repo}/releases/latest`;
   // Fallback used only if the GitHub API fetch fails after retries.
   // Kept in sync with the latest shipped release so a dead API still
   // serves a current (not stale) installer.
-  const FALLBACK_TAG = 'v1.2.50';
+  const FALLBACK_TAG = 'v1.2.53';
   const FALLBACK_VER = FALLBACK_TAG.replace(/^v/, '');
   let windowsUrl = `https://github.com/${owner}/${repo}/releases/download/${FALLBACK_TAG}/KnightTrader-Blofin-Setup-${FALLBACK_VER}.exe`;
   let macUrl = `https://github.com/${owner}/${repo}/releases/download/${FALLBACK_TAG}/KnightTrader-Blofin-${FALLBACK_VER}-arm64.dmg`;
@@ -89,7 +89,7 @@
         clearTimeout(timeout);
         if (response.ok) return await response.json();
       } catch (e) {
-        // network reset / timeout / abort — try again after a short backoff
+        // network reset / timeout / abort â€” try again after a short backoff
         if (i < attempts) await new Promise((r) => setTimeout(r, 1200 * i));
       }
     }
