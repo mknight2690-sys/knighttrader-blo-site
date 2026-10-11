@@ -6,7 +6,7 @@
   const latestMacYmlUrl = `https://github.com/${owner}/${repo}/releases/latest/download/latest-mac.yml`;
   // Last-resort pin — only used if API + latest.yml both fail.
   // Prefer resolving live filenames so we never 404 mid-publish.
-  const FALLBACK_TAG = 'v1.2.54';
+  const FALLBACK_TAG = 'v1.2.55';
   const FALLBACK_VER = FALLBACK_TAG.replace(/^v/, '');
   let windowsUrl = `https://github.com/${owner}/${repo}/releases/latest/download/KnightTrader-Blofin-Setup-${FALLBACK_VER}.exe`;
   let macUrl = `https://github.com/${owner}/${repo}/releases/latest/download/KnightTrader-Blofin-${FALLBACK_VER}-arm64.dmg`;
